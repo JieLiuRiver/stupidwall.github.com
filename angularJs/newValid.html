@@ -1,0 +1,81 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	表单验证新方式
+ /*===============================================*/
+     &lt;form novalidate name="nForm"&gt;
+	    	&lt;div&gt;
+	    		&lt;label&gt;用户名:&lt;/label&gt;
+	            &lt;input type="text" name="nText" ng-model="regText.name" 
+	            required ng-pattern="/^[a-zA-Z]+$/" ng-blur="change('regText',nForm.nText.$error)"&gt;
+	            &lt;span ng-repeat=" re in regText.regList | filter : regText.regVal "&gt;{{ re.tips }}&lt;/span&gt;
+	        &lt;/div&gt;
+
+	        &lt;div&gt;
+	    		&lt;label&gt;密码:&lt;/label&gt;
+	            &lt;input type="password" name="nPassword" ng-model="regPassword.name" 
+	            required ng-minlength="6" ng-blur="change('regPassword',nForm.nPassword.$error)"&gt;
+	            &lt;span ng-repeat=" re in regPassword.regList | filter : regPassword.regVal "&gt;{{ re.tips }}&lt;/span&gt;
+	        &lt;/div&gt;
+    &lt;/form&gt;
+
+==========================================
+
+	var m1 = angular.module('myApp',[]);
+	m1.controller('Aaa',['$scope',function($scope){	
+		$scope.regText = {
+			regVal : 'default',
+			regList : [
+				{ name : 'default' , tips : '请输入用户名'},
+				{ name : 'required' , tips : '用户名不能为空'},
+				{ name : 'pattern' , tips : '用户名必须是字母'},
+				{ name : 'pass' , tips : '√'}
+			]
+		};
+		
+		$scope.regPassword = {
+			regVal : 'default',
+			regList : [
+				{ name : 'default' , tips : '请输入密码'},
+				{ name : 'required' , tips : '密码不能为空'},
+				{ name : 'minlength' , tips : '密码至少6位'},
+				{ name : 'pass' , tips : '√'}
+			]
+		};
+		
+		$scope.change = function( reg , err ){
+			for(var attr in err){
+				if( err[attr] == true ){
+					$scope[reg].regVal = attr;
+					return;
+				}
+			}
+			$scope[reg].regVal = 'pass';
+		};
+	}]);	
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-0">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+    	
+
+
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

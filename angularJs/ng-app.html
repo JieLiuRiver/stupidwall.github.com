@@ -1,0 +1,46 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-6">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	ng-app
+ /*===============================================*/
+	&lt;div ng-app="myApp" ng-controller="myCtrl">
+	    {{ firstName + " " + lastName }}
+	&lt;/div>
+
+	&lt;script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope) {
+	    $scope.firstName = "John";
+	    $scope.lastName = "Doe";
+	});
+	&lt;/script>	
+	
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-6">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+	ng-app 指令用于告诉 AngularJS 应用当前这个元素是根元素。
+	所有 AngularJS 应用都必须要要一个根元素。
+	HTML 文档中只允许有一个 ng-app 指令，如果有多个 ng-app 指令，则只有第一个会被使用。
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

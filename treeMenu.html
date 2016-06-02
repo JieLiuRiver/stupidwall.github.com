@@ -1,0 +1,96 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	树形菜单导航
+ /*===============================================*/
+	
+	html:
+
+	&lt;ul class="treeNode"&gt;
+		&lt;li&gt;
+		         当前项 
+		         &lt;div class="treeList&gt;
+		              &lt;a href="javascript:;" class="treeIcon"&gt;-&lt;/a&gt;    
+		              &lt;a href="javascript:;" &gt;1点&lt;/a&gt;     
+		         &lt;/div&gt;
+
+		          子菜单 
+		          &lt;ul class="treeNode"&gt;
+		          		&lt;li&gt;
+		          			&lt;div class="treeList"&gt;
+		          				&lt;a class="treeIcon" href="javascript:;"&gt;-&lt;/a&gt;
+		          				&lt;a href="javascript:;"&gt;1-2点&lt;/a&gt;
+		          			&lt;/div&gt;
+
+		          			&lt;ul class="treeNode"&gt;
+		          				&lt;li&gt;
+		          					&lt;div class="treeList"&gt;
+		          						&lt;a class="treeIcon" href="javascript:;"&gt;-&lt;/a&gt;
+		          						&lt;a href="javascript:;"&gt;1-2-1点&lt;/a&gt;
+		          					&lt;/div&gt;
+
+										&lt;ul class="treeNode"&gt;
+					          				&lt;li&gt;
+					          					&lt;div class="treeList"&gt;
+					          						&lt;a class="treeIcon" href="javascript:;"&gt;-&lt;/a&gt;
+					          						&lt;a href="javascript:;"&gt;1-2-1-1点&lt;/a&gt;
+					          					&lt;/div&gt;
+					          				&lt;/li&gt;
+				          				&lt;/ul&gt;
+		          				&lt;/li&gt;
+		          			&lt;/ul&gt;
+		          		&lt;/li&gt;
+
+						&lt;li&gt;
+          					&lt;div class="treeList"&gt;
+          						&lt;a class="treeIcon" href="javascript:;"&gt;-&lt;/a&gt;
+          						&lt;a href="javascript:;"&gt;1-3点&lt;/a&gt;
+          					&lt;/div&gt;
+
+								&lt;ul class="treeNode"&gt;
+			          				&lt;li&gt;
+			          					&lt;div class="treeList"&gt;
+			          						&lt;a class="treeIcon" href="javascript:;"&gt;-&lt;/a&gt;
+			          						&lt;a href="javascript:;"&gt;1-3-1点&lt;/a&gt;
+			          					&lt;/div&gt;
+			          				&lt;/li&gt;
+		          				&lt;/ul&gt;
+          				&lt;/li&gt;
+          				.....//省略
+
+		          &lt;/ul&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+
+	
+	
+	
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+	1、创建树形菜单结构
+	2、检测哪一个属于树形菜单的单击按钮，绑定事件
+	3、如果是'-'，隐藏子元素； 反之显示子元素
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

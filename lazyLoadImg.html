@@ -1,0 +1,76 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+	<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+		<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+	 /*===============================================*/
+	 /*  	网页图片较多的时实现分批次加载图片
+	 /*===============================================*/
+		
+		var needLoadImgs = function(){
+			var that = this;
+			this._imgs = [];
+			this.initImgs = function(){
+				var len = document.images.length;
+				var aImg = document.images;
+
+				if( len > 0 ){
+					for( var i=0; i&lt;len; i++ ){
+						this._imgs[i] = aImg[i];  
+						
+						
+						if( aImg[i].src === undefined || aImg[i].src === false ){
+							aImg[i].src = preImg;
+						}
+					}
+					that.updateImg();
+					that.initEvent();
+				}
+			}
+		}
+		
+		needLoadImgs.prototype.initEvent = function(){
+			var that = this;
+			window.onscroll = function(){
+				that.updateImg();
+			}
+		}
+		
+		
+		needLoadImgs.prototype.updateImg = function(){
+	
+			for( var i=0; i&lt;this._imgs.length; i++ ){
+				var viewHeight = document.documentElement.clientHeight; //确定是这个？
+				var scrollY = document.documentElement.scrollTop || document.body.scrollTop;
+				if(  this._imgs[i].getAttribute('data-source') ){
+					if( getPosTop( this._imgs[i] ) + this._imgs[i].offsetHeight < viewHeight  + scrollY){
+						this._imgs[i].src = this._imgs[i].getAttribute('data-source');
+						this._imgs.splice(i, 1);   
+					}
+				}
+			}
+		}
+
+		return new needLoadImgs(); 
+
+
+		</code>
+	</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+	1、 图片对象push到数组里管理起来
+	2、 初始化，绑定滚动事件
+	3、 满足条件加载图片，加载过的图片对象，从数组中删去
+				</code>
+			</pre>
+		</div>
+	<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;"">返回</button>
+
+	</div>
+</div>
+	
+

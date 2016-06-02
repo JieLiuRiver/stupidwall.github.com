@@ -1,0 +1,54 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	JavaScript 调用百度地图
+ /*===============================================*/
+	var baiduMap = null; 
+	var intBaiduMap = function( m ){
+		baiduMap = new BMap.Map(m);  //创建BMap实例
+		var point = new BMap.Point(116.404, 39.915);   //创建点坐标
+		baiduMap.centerAndZoom(point, 15);   //初始化地图，设置中心点坐标，地图级别
+		baiduMap.enableScrollWheelZoom(); //启用滚轮放大缩小，默认禁止
+		baiduMap.disableDragging();    // 禁用地图拖拽
+	}
+	intBaiduMap();
+	
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+	1、引入js、加上申请的key
+	2、实例化百度地图对象
+	3、初始化地图对象的API
+	4、根据需要，定制化地图模块
+
+	html:
+	&lt;script src="http://api.map.baidu.com/api?v=2.0&ak=D874c49a728d******">&lt;/script>
+	&lt;div id="baiduMap"&gt;
+	&lt;/div&gt;
+
+	css：
+	#baiduMap{ 
+		width:500px;
+		height:500px;	
+		overflow:hidden;
+		margin;0;}
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

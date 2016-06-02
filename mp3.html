@@ -1,0 +1,151 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-6">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+	 /*===============================================*/
+	 /*  	HTML5版JavaScript实现的MP3播放器
+	 /*===============================================*/
+		var playerMp3 = function( option ){
+			this.audio = option.audio;
+			this.audioAction = option.audioAction;
+			this.process = option.process;
+			this.setProcessO = option.setProcess;
+			this.setProcessOK = option.setProcessOK;
+			this.volup = option.volup;
+			this.voldown = option.voldown;
+			this.muted = option.muted;
+			var self = this;
+
+			//播放控制
+			this.audioAction.onclick = function(){  
+				if( this.value == '播放' ){
+					self.start();
+					this.value = '暂停'；
+				}else{
+					self.pause();
+					this.value = '播放'；
+				}
+			}
+
+			//音量增大
+			this.volup.onclick = function(){
+				self.setVolup();
+			}
+
+			//音量减小
+			tihs.voldown.onclick = function(){
+				self.setVoldown();
+			}
+
+			//静音、发声
+			this.muted.onclick = function(){
+				self.setMute();
+			}
+
+			//获取播放进度
+			setInterval(function(){
+				self.getProcess();
+			},1000);
+
+			//确定修改进度
+			this.setProcessOK.onclick = function(){
+				self.setProcess();
+			}
+		}
+
+		//开始播放
+		playerMp3.prototype.start  = function(){
+			this.audio.play();
+		}
+
+		//暂停播放
+		playerMp3.prototype.pause = function(){
+			this.audio.pause();
+		}
+
+		//获取播放进度
+		playerMp3.prototype.getProcess = function(){
+			this.process.value = Math.floor( this.audio.currentTime ) +'秒';
+		}
+		
+		//设置播放进度
+		playerMp3.prototype.setProcess = function(){
+			this.audio.currentTime = ( this.setProcessO.value || 0 );
+		}
+
+		//音量+
+		playerMp3.prototype.setVolup = function(){
+			var v = this.audio.valume + 0.1;
+			this.audio.volume = ( v>1 ? 1 : v );
+		}
+
+		//音量-
+		playerMp3.prototype.setVoldown = function(){
+			var v = this.audio.volume - 0.1;
+			this.audio.volume = ( v &lt; 0 ？ 0 : v );
+		} 
+		
+		//静音、发声
+		playerMp3.prototype.setMute = function(){
+			this.audio.muted = !this.audio.muted;
+			this.audio.muted? (this.muted.value == '发声') : (this.muted.value ='静音');
+		}
+
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-6">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	方法使用：
+	playerMp3({
+		'audio' : document.getElementById('audio'),         //音频对象
+		'audioAction' : document.getElementById('audioAction'),  //音频控制播放和暂停
+		'process' : document.getElementById('process'),		 //播放进度
+		'setProcess' : document.getElementById('setProcess'),	 //修改播放进度
+		'setProcessOk' : document.getElementById('setProcessOK'),    //确定修改播放进度，
+		'volup' : document.getElementById('volup'),	  //音量增大
+		'voldown' : document.getElementById('voldown'),  //音量减少
+		'muted' : document.getElementById('muted')	  //静音
+	});
+
+	index.html:
+	&lt;div&gt;
+		&lt;div&gt;
+			正在播放mp3文件，Hello.mp3&lt;/div&gt;
+		&lt;/div&gt;
+
+		&lt;div&gt;
+			&lt;input id="audioAction" type="button" value="播放"/&gt;
+		&lt;/div&gt;
+
+		&lt;div&gt;
+			进度：&lt;input id="process" value="0"&gt;
+		&lt;/div&gt;
+
+		&lt;div&gt;
+		修改进度:
+			&lt;input id="setProcess" type="text" value="0"&gt;
+			&lt;input id="setProcessOK" type="button" value="确定"&gt;
+		&lt;/div&gt;
+
+		&lt;div&gt;
+			&lt;input type="button" id="volup" value="音量+"&gt;
+			&lt;input type="button" id="voldown" value="音量-"&gt;
+			&lt;input type="button" id="muted" value="静音"&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

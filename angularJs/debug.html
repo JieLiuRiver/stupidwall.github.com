@@ -1,0 +1,53 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	Angular 调试
+ /*===============================================*/
+  1)、从Dom中调试
+      可以使用jquery选择器找元素
+      可以使用document.querySelcetor()方法
+        var rootHtml = document.querySelcetor('html');
+        var ele = angualr.element(rootHtml);
+
+      我要查看控制器中给作用域对象的自定义变量或其他属性：
+         var scope = ele.scope();
+      可以通该元素上提取它的$scope对象
+
+      我要提取当前元素的控制器：
+        var ctrl = ele.controller('ngModel');
+
+      我要提取当前元素的注入器
+         var injector = ele.injector();
+
+      我要提取与一个元素$scope对象关联的数据：
+         ele.inheritedData();
+
+  2)、 调试工具：Angular Batarang
+        Angular Batarang是一个由Google的Angular团队开发的Chrome扩展程序，
+        它很好地集成了调
+        试Angular应用的工具
+
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

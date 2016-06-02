@@ -1,0 +1,52 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	插值服务
+ /*===============================================*/
+    var m1 = angular.module('myApp',[]);
+    m1.controller('Aaa',['$scope','$interpolate',function($scope,$interpolate){
+
+    $scope.$watch('body',function(newBody){
+
+    if(newBody){
+    var temp = $interpolate(newBody);
+    $scope.showText = temp({ name : $scope.name });
+
+    }
+
+    });
+    }]);
+
+    &lt;body>
+    &lt;div ng-controller="Aaa">
+        &lt;input type="text" ng-model="name">
+        &lt;textarea ng-model="body">
+        &lt;/textarea>
+        &lt;p>{{showText}}&lt;/p>
+    &lt;/div>
+    &lt;/body>
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+
+
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

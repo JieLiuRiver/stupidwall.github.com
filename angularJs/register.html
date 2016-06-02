@@ -1,0 +1,70 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	注册验证_自定义错误信息提示指令
+ /*===============================================*/
+		&lt;input type=&#x27;email&#x27; name=&quot;email&quot;
+		id=&quot;_email&quot; ng-model=&quot;vm.form.email&quot;
+		ng-required=&#x27;true&#x27;/&gt;
+		&lt;ul ng-if=&quot;myForm.email.$dirty &amp;&amp;
+		myForm.email.$invalid&quot;&gt;     //用户输入过，并且无效，则显示
+		&lt;li ng-if=&#x27;myForm.email.$error&#x27;&gt;无效的邮箱格式&lt;/li&gt;
+		&lt;li ng-if=&#x27;myForm.email.required&#x27;&gt;必填项&lt;/li&gt;
+
+		&lt;/ul&gt;
+
+
+		angular.module('myApp',[])
+		.controller('myCtrl',function($scope){
+		//这里的this指针指向的是$scope.vm变量，作为一个约定，我们把它赋值给vm变量，不再使用this
+		var vm = this;
+		$scope.submit = function(form){
+
+		}
+		})
+		.directive('invalidError',function( $compile ){
+		return{
+		restrict : 'A',
+		require : 'ngModel',
+		link : function(scope,element,attrs,ngModel){
+		console.log('wrong?');
+		var subScope = scope.$new(true);
+		subScope.hasError = function(){
+		return ngModel.$dirty && ngModel.$invalid;
+		}
+		subScope.errors = function(){
+		return ngModel.$error;
+		}
+		var hint = $compile('&lt;ul class="error" ng-if="hasError()">
+				<&lt;li ng-repeat="(name, wrong) in errors()" ng-if="wrong">
+				{ {name | error} }&lt;/li>&lt;/ul>')(subScope);
+
+		element.after(hint);
+		}
+		}
+		});
+
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

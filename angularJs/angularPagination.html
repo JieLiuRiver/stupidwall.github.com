@@ -1,0 +1,80 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+												 /*===============================================*/
+												 /*  					自定义分页指令的使用
+												 /*===============================================*/
+       			1、需要引入的文件：
+       				1)、bootstrap.css
+       				2)、bootstrpa.js
+       				3)、angular.js
+       				4)、pagination.js
+
+       			2、参数说明：
+       				recordcount 记录数--必填项
+			        pagenum 当前显示页码，跟指令内部的页码进行双向绑定--必填项
+			        pagesize 每页显示记录数，跟指令内部的显示记录数进行双向绑定--必填项
+			        onselect 查询方法，传入到指令内部进行调用--必填项
+			        max-size 页数选择列表显示的最大条目数--可选项，默认值为7
+			        is-hide-pagesize-list 是否隐藏每页记录数选择下拉框--可选项，默认为不隐藏
+			        is-hide-pagenum-input 是否隐藏页码输入框--可选项，默认为不隐藏 
+			        is-hide-summary-info 是否隐藏分页汇总信息--可选项，默认为不隐藏
+			        is-hide-pre-page-link 是否隐藏上一页链接--可选项，默认为不隐藏
+			        is-hide-next-page-link 是否隐藏下一页链接--可选项，默认为不隐藏
+			        pagesize-select-style 每页显示记录数select样式--可选项，格式为json对象格式，如：{height:'34px'}
+
+				3、HTML中应用：
+					&lt;label>条目数：&lt;/label>&lt;input type="text" ng-model="recordCount">&lt;br>
+			        &lt;label>pagenum：&lt;/label>{ {formData.pagenum} }&lt;br>
+			        &lt;label>pagesize：&lt;/label>{ {formData.pagesize} }&lt;br>
+
+					&lt;pagination 
+			            recordcount="{{recordCount}}" 
+			            pagenum="formData.pagenum"
+			            pagesize="formData.pagesize" 
+			            onselect="query()" 
+			            max-size="8" 
+			            is-hide-pagesize-list="true" 
+			            is-hide-pagenum-input="true" 
+			            is-hide-summary-info="false" 
+			            is-hide-pre-page-link="false" 
+			            is-hide-next-page-link="false" 
+			            pagesize-select-style="{height:'34px'}">
+			        &lt;/pagination>
+				
+				4、js：
+					var app=angular.module("app",["util.pagination"]);
+					app.controller("paginationController",["$scope",function($scope){
+					    //初始化条数目为123
+					    $scope.recordCount='123';
+					    $scope.formData={};
+					    $scope.formData.pagesize=10;
+					    $scope.query=function(){
+					        console.info("查询-参数pagenum："+$scope.formData.pagenum+"，
+					        	pagesize："+$scope.formData.pagesize);
+					    }
+					}]);
+
+				5、pagination.js里的templateUrl： pagination_v2.html
+
+				</code>
+			</pre>
+	</div>
+		<!-- <div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+					Hello World
+				</code>
+			</pre>
+		</div> -->
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

@@ -1,0 +1,88 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	对指定的日期进行加减
+ /*===============================================*/
+	//日期格式化成 字符串
+	function dateFormat(){
+		Date.prototype.format = function(f){
+			var date = {
+				'Y' : this.getFullYear(),
+				'M' : (this.getMonth()+1),
+				'D' : this.getDate(),
+				'h' : this.getHours(),
+				'm' : this.getMinutes(),
+				's' ：this.getSeconds()	
+			}
+			var d = '';
+			for( var d in date ){
+				var reg = new RegExp("["+d+"]{1,}", "g");
+				var r = reg.test( f );
+			
+				if( r ){
+					var _d = date[d];
+					f = f.replace( reg, _d&lt;10?)('0'+_d):_d )
+				}
+			}
+			return f;
+		}
+	}
+
+	function setXDate( date, xY, xM, xD, xh, xm,xs ){
+		xY = xY || 0;
+		xM = xM || 0;
+		xD = xD || 0;
+		xh = xh || 0;
+		xm = xm || 0;
+		xs = xs || 0;
+
+		if( xY ){
+			date.setFullYear( date.getFullYear() + xY );
+		}
+		if( xM ){
+			date.setMonth( date.getMonth() +ｘＭ );
+		}
+		if( xD ){
+			date.setDate( date.getDate() + xD );
+		}
+		if( xh ){
+			date.setHours( date.getHours() + xh )
+		}
+		if( xm ){
+			date.setMinutes( date.getMinutes() + xm );
+		}
+		if( xs ){
+			date.setSeconds( date.getSeconds() + xs );
+		}
+		return date.format( 'YYYY-MM-DD h:m:s' );
+	}	
+	
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	使用说明：
+	var oBox = document.getElementById('box');
+	var oBox2 = document.getElementById('box1');
+	oBox.innerHTML = setXDate( new Date(), 0,0,7 );
+	oBox2.innerHTML = setXDate( new Date(), 7 );
+	
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

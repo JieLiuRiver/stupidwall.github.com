@@ -1,0 +1,164 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	Angular 自定义指令
+ /*===============================================*/
+                angular.module('MyApp',[])
+                .directive('hello',function(){
+                return {
+                restrict : 'E',
+                replace : true,
+                transclude : true,
+                controller : function( $scope ){
+                this.name = 'Jack';
+                this.show = function(){
+                alert('hello jack');
+                }
+                },
+                template : "&lt;ul&gt;&lt;li&gt;item1&lt;/li&gt;&lt;li&gt;item2&lt;/li&gt;&lt;li&gt;item3&lt;/li&gt;&lt;div ng-transclude&gt;&lt;/div&gt;&lt;/ul&gt;"
+                }
+                })
+                .directive('hi',function(){
+                return {
+                restrict : 'E',
+                replace : true,
+                require : '?^hello',
+                template : '<span>hi girl</span>',
+                link : function(scope, element, attrs, controller){
+                console.log( controller );
+                }
+                }
+                });
+
+                //自定义拖拽属性指令
+                angular.module('MyApp',[])
+                .directive('myDrag',function(){
+                return{
+                restrict : 'A',
+                link : function(scope, element, attr){
+                var disX = 0;
+                var disy = 0;
+                //比较的两个对象或值能够通过 === 表达式。
+                ===要求两个值不仅值相同，类型也要相同，
+                也就是说，1 === “1”是不成立
+                attr.myDrag = angular.equals( attr.myDrag, 'true' );
+                element.on('mousedown', function( ev ){
+                var that = this;
+                disX = ev.pageX - $(this).offset().left;
+                disY = ev.pageY - $(this).offset().top;
+                if( attr.myDrag ){
+                var $line = $('&lt;div>');
+                $line.css({
+                width: $(this).outerWidth(),
+                height : $(this).outerHeight(),
+                position: 'absolute',
+                left : $(this).offset().left,
+                top : $(this).offset().top,
+                border : '1px dashed #333'
+                })
+                $('body').append($line);
+                }
+                $(document).on('mousemove', function(ev){
+                if( attr.myDrag ){
+                $line.css('left', ev.pageX - disX);
+                $line.css('top', ev.pageY - disY);
+                }else{
+                $(that).css('left', ev.pageX -disX);
+                $(that).css('top', ev.pageY -disY);
+                }
+                })
+                $(document).on('mouseup', function(){
+                $(document).off();
+                if( attr.myDrag ){
+                $(that).css('left', $line.offset().left);
+                $(that).css('top',$line.offset().top);
+                $line.remove();
+                }
+                });
+                return false;
+                });
+                }
+                }
+                })
+
+                使用：
+                &lt;div style="width:100px;height:100px;background-color: red; position: absolute" my-drag="false">
+
+                //自定义选项卡标签指令
+                angular.module('MyApp',[])
+                .directive('myTab',function(){
+                return {
+                restrict : 'E',
+                replace : true,
+                scope : {
+                myId : '@',
+                myData : '='
+                },
+                controller : ['$scope', function($scope){
+                $scope.name = 'Jacky chan';
+                }],
+                templateUrl : 'temp.html',
+                link : function(scope,element, attr){
+                $(element).delegate('input','click', function(){
+                $(this).attr('class','active').siblings('input').attr('class','');
+                $(this).siblings('div').eq($(this).index()).css('display','block').siblings('div').css('display','none');
+                });
+                }
+                }
+                })
+                .controller('myCtrl',['$scope',function($scope){
+                $scope.data1 = [
+                { title : '数学', content : 'jsdlfsaf' },
+                { title : '语文', content : 'safd' },
+                { title : '英语', content : 'dafsdf' }
+                ]
+                $scope.data2 = [
+                { title : '开始', content : '分撒发生地方' },
+                { title : '过程', content : '撒发的萨法' },
+                { title : '结束', content : '撒发都是非法撒' }
+                ]
+                }]);
+
+                temp.html
+                &lt;div id="{{ myId }}"&gt;
+                &lt;input type = "button" ng-repeat="data in myData" ng-value="data.title" ng-class="{ active:$first }"/&gt;
+                &lt;div ng-repeat="data in myData" ng-style="{display:$first? 'block' : 'none'}"&gt;{{ data.content }}&lt;/div&gt;
+                &lt;/div&gt;
+
+                //使用：
+                &lt;my-tab my-id="div1" my-data="data1"&gt;
+                &lt;/my-tab&gt;
+
+                &lt;my-tab my-id="div2" my-data="data2"&gt;
+                &lt;/my-tab&gt;
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+    1 restrict：定义了标签的使用方法，一共四种，分别是AECM
+    2 template：定义标签的模板。里面是用于替换自定义标签的字符串
+    3 repalce：是否支持替换
+    4 transclude：是否支持内嵌
+    因为标签内部可以嵌套其他的标签，
+    因此想要在自定义标签中嵌套其他的元素标签，则需要：
+    1 使用transclude属性，设置为true。
+    2 并使用ng-transclude属性，定义内部嵌套的位置。
+
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

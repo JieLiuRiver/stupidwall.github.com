@@ -1,0 +1,133 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	Less
+ /*===============================================*/
+	/*==== 定义 ====*/
+	.zindex( @n:1 ){
+	  z-index: @n;
+	}
+	@VS : 100%;
+	.boxSizingBX{
+	  box-sizing:border-box;
+	}
+	.absolute(@top:'',@left:'',@bottom:'',@right:''){
+	  position:absolute;
+	  top:@top;
+	  left:@left;
+	  bottom:@bottom;
+	  right:@right;
+	}
+	.linearGr(@dir:top,@c1:#fff,@c2:#ccc){
+	  background:-webkit-linear-gradient(@dir,@c1,@c2);
+	  background:-moz-linear-gradient(@dir,@c1,@c2);
+	  background:linear-gradient(@dir,@c1,@c2);
+	}
+	.perspective{
+	  -webkit-perspective : 800px;
+	  -moz-perspective : 800px;
+	  perspective : 800px;
+	}
+	.preserve3D{
+	  -webkit-transform-style:preserve-3d;
+	  -moz-transform-style:preserve-3d;
+	  transform-style:preserve-3d;
+	}
+	.transformOrigin(@h:center,@b:center){
+	  -webkit-transform-origin:@h @b;
+	  -moz-transform-origin:@h @b;
+	  transform-origin:@h @b;
+	}
+	.translateY(@dis:100px){
+	  -webkit-transform:translateY(@dis);
+	          transform:translateY(@dis);
+	}
+	.animation(@t:1s,@delay:0s,@keyframe:tree){
+	  -webkit-animation : @t @delay @keyframe;
+	          animation: @t @delay @keyframe;
+	}
+	.animationMode{
+	  -webkit-animation-fill-mode:forwards;  /* 让它不消失 停在那里 */
+	          animation-fill-mode:forwards;
+	}
+	.animationOther{
+	  -webkit-animation-iteration-count:infinite;
+	          animation-iteration-count:infinite;
+	  -webkit-animation-direction:alternate;
+	          animation-direction:alternate;
+	  -webkit-animation-timing-function:linear;
+	          animation-timing-function:linear;
+	}
+	.block{ 
+	    display:block;}
+	.inlineBlock{
+	    display: inline-block;
+	}
+	.bg{ background: url(../images/sprite/sprite.png) no-repeat}
+
+	.bg2{ background: url(../images/sprite/1.png) no-repeat;}
+
+	.bg3{ background: #fff url(../images/sprite/2.png) no-repeat}
+
+	.bg4{ background: #fff url(../images/sprite/3.png) no-repeat}
+
+	.clear{ zoom:1}
+	.clear:after{ content:""; display: block; clear:both;}
+	*{ box-sizing:border-box;}
+	.screen_width{.px2rem(width,375)}
+
+	.follow_parent{ width:100%; height:100%;}
+
+	.img{ border:none;}
+
+	.centerWord(@lineHeight:30){
+	    text-align: center;
+	    line-height: @lineHeight;
+	}
+
+	@baseFontSize:100;
+	.px2rem(@name,@px){ 
+	        @{name}: @px/@baseFontSize*1rem }
+	.px2rem_(@name,@px,@px2){ 
+	        @{name}: @px/@baseFontSize*1rem  @px2/@baseFontSize*1rem}
+
+	@rem : 100rem;
+	@radio : 2px;
+
+	html{ 
+	  height:100%;
+	  width:100%;
+	  overflow:hidden;}
+	body{ 
+	  height:100%;
+	  width:100%;
+	  overflow:auto;}
+	
+	
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

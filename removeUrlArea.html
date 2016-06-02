@@ -1,0 +1,58 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	移除移动浏览器地址栏
+ /*===============================================*/
+		
+	window.onload = function(){
+
+		var orientationCall = [];    //函数队列
+
+		var orientation = (function(){
+			window.addEventListener( 'orientationchange', function( event ){
+				orientation.forEach( function(value, index){
+					value();
+				} );
+			} );
+		})();
+
+		function addOrientation( callFn ){    //添加回调函数
+			orientationCall[ orientationCall.length ] = callFn;
+		}
+
+		function clearUrl(){
+			var scroll = function(){
+				window.scrollTo(0, 1);
+			}
+			scroll();
+			addOrientation( scroll );
+		}
+	}
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+	1、 当页面内容过多，超过屏幕高度时，自动隐藏地址栏
+	2、window.scroll(0, 1);  核心代码
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

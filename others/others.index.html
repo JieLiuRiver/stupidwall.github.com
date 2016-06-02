@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 style="text-align: center;">
+						Lodash
+					</h3>
+				</div>	
+				<div class="panel-body">
+					<ul class="list">
+					<li class="con_item" ng-repeat="item in data_lodash | filter : keyword">
+						<a ui-sref="{{item.view}}">
+						<span class="glyphicon glyphicon-star" style="color:#f60;margin-left: 5px;position: relative;left: -5px;">
+							
+						</span>{{ item.title }}
+						</a>
+					</li>	
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 style="text-align: center;">
+						Angular相关
+					</h3>
+				</div>	
+				<div class="panel-body">
+					<ul class="list">
+						<li class="con_item" ng-repeat="item in [] | filter : keyword">
+							<a ui-sref="{{item.view}}">
+							<span class="glyphicon glyphicon-star" style="color:#f60;margin-left: 5px;position: relative;left: -5px;">
+								
+							</span>{{ item.title }}
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>>

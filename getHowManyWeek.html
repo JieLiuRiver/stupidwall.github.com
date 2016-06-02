@@ -1,0 +1,50 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	获取指定日期是第几周
+ /*===============================================*/
+	 function getMonthDays( Y, M ){
+		return new Date( Y, M, 0 ).getDate();
+	}
+	function getHowManyWeeks( Y, M, D ){
+		var totalDays = 0;
+
+		for( var i=0; i&lt;M; i++ ){
+			totalDays += this.getMonthDays( Y, M );
+		}
+		totalDays += D;
+		return Math.ceil( totalDays/7 );
+	}	
+	
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+	1、计算出M之前月份有多少天
+	2、加上D天，即是所有累加的天数
+	3、除以7，向上取整，算出指定日期是当年的第几周
+
+	使用：
+	console.log( getHowManyWeeks('2016','2','6') );
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

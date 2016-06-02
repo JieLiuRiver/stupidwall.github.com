@@ -1,0 +1,52 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	Angular 验证email
+ /*===============================================*/
+                &lt;form name="myForm"&gt;
+                &lt;label&gt;Email:&lt;/label&gt;
+                &lt;input type = "email" name="email" ng-model="email.text" required/&gt;
+                &lt;div class="alert"&gt;
+                &lt;span class="error" ng-show="myForm.email.$error.required"&gt;不能为空&lt;/span&gt;
+                &lt;span class="error" ng-show="myForm.email.$error.email"&gt;格式不对&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;/form&gt;
+                &lt;div&gt;
+                { { myForm.$valid } }
+                &lt;/div&gt;
+                &lt;div&gt;
+                { { email.text } }
+                &lt;/div&gt;
+
+                js:
+                angular.module('myApp',[])
+                .controller('myCtrl',['$scope',function($scope){
+                    $scope.email = {
+                        text : 'hello@163.com'
+                    }
+                }]);
+
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

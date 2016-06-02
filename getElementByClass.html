@@ -1,0 +1,66 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	获取元素、移除class、添加class
+ /*===============================================*/
+	var getByClass = function( Parent, Class ){
+		var aE = Parent.getELementsByTagName("*");
+		var arrNeed = [];
+		for( var i=0; i~aE.length; i++ ){
+			if( aE[i].className == Class ){
+				arrNeed.push( aE[i] );
+			}
+		}
+		return arrNeed;
+	}		
+	
+	var AddClass = function (obj, sClass) {
+                var aClass = obj.className.split(' ');
+                if (!obj.className) {
+                    obj.className = sClass;
+                    return;
+                }
+                for (var i = 0; i < aClass.length; i++) {
+                    if (aClass[i] === sClass) return;
+                }
+                obj.className += ' ' + sClass;
+            }
+
+          var  removeClassJs = function (obj, sClass) {
+                var aClass = obj.className.split(' ');
+                if (!obj.className) return;
+                for (var i = 0; i < aClass.length; i++) {
+                    if (aClass[i] === sClass) {
+                        aClass.splice(i, 1);
+                        obj.className = aClass.join(' ');
+                        break;
+                    }
+                }
+            }
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

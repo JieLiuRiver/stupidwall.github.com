@@ -1,0 +1,130 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-6">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*    Angular自定义服务
+ /*===============================================*/
+	生成随机数的服务：
+    myApp.factory('myRandomNum',function(){
+           return function(num1, num2){
+                return Math.random()*(num2-num1)+num1;
+           }
+    });
+    myApp.controller('myCtrl',['$scope','myRandomNum',
+        function($scope, myRundomNum){
+            console.log( myRundomNum(2,28) );
+        }]);
+
+    Provider方式：
+    m1.provider('myService',function(){
+        return {
+            name : 'hello',
+            $get : function(){
+                return {
+                    name : this.name,
+                    show : function(){
+                        return this.name + ':angular';
+                    }
+                };
+
+            }
+        };
+    });
+
+    m1.config(['myServiceProvider',
+                function(myServiceProvider){
+
+        console.log(myServiceProvider);
+
+        myServiceProvider.name = 'hi';
+
+    }]);
+
+    m1.controller('Aaa',['$scope','myService',
+                function($scope,myService){
+
+        console.log(myService.show());
+
+    }]);
+
+    ================================================
+    m1.provider('myRandomNum',function(){
+        var obj = {};
+        obj.bBtn = false;
+        obj.int = function(b){
+             if(b){
+                this.bBtn = true;
+             }else{
+                this.bBtn = false;
+             }
+        }
+        obj.$get = function(){
+             var that =this;
+             return function(num1, num2){
+                return that.bBtn ? Math.round( Math.random()*(num2-num1)-num1 )
+                : Math.random()*(num2-num1)+num1;
+             }
+        }
+        return obj;
+    };
+
+    m1.config(['myRandomNumProvider',
+       function(myRandomNumProvider){
+            myRandomNumProvider.init(true);
+       }]);
+
+    m1.controller('myCtrl',['$scope','myRandomNumber',
+         function($scope,myRandomNumber){
+                console.log( myRandomNumber(1,5) );
+         }]);
+
+    =================================================
+    service方式：
+        m1.service('myService',FnService);
+            function FnService(){
+            this.name = 'hello';
+            }
+        FnService.prototype.age = 20;
+        m1.controller('Aaa',['$scope','myService',
+                function($scope,myService){
+            console.log(myService.name);
+            console.log(myService.age);
+        }]);
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-6">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+    1、通过factory，这种方式，不能初始化config配置的
+    2、通过service，类似构造函数的方式。
+    3、通过value,设置常量，数据
+    3*、通过provider，可以配置。有一个$get;
+    3+、通过contstant，常量。这个是可以通过config配置的
+    4、自定义服务命名不要用$
+    5、注入到控制器里使用
+    6、例子：
+           配置里更改true/false，来判断是否需要
+                    正整数的随机数
+    7、我们把服务都写在一个service.js文件里
+       把它引进来，然后，在需要用这个服务的模块下，
+       我们把它依赖进来，同时，我们这个服务，
+       是通过provider方式写的，因此，可以配置，
+       这样，我们就可以在不同模块下，根据不同的需求，
+       配置使用了。
+
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="AngularJs" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

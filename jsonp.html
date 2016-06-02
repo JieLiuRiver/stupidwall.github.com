@@ -1,0 +1,47 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-8">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+ /*===============================================*/
+ /*  	JSONP跨域
+ /*===============================================*/
+	var oScript = document.createElement('script');
+	  oScript.src ="data.php?callback=fn2";
+	  document.body.appendChild(oScript);
+
+	  function fn2( data ){
+	  	for( var i=0; i~data.length; i++ ){
+	  		xxxx
+	  	}
+	  }
+
+	  data.php:
+	  	$arr = array("1",'2','3','4');
+	  	$callback = isset( $_GET['callback'] ) ? $_GET['callback'] :  'fn';
+	  	echo '$callback('. json_encode($arr) .')';	
+	
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	代码说明：
+
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+
