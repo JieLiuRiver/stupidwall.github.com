@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
 	<meta charset="UTF-8">
+	<title>常用的Js功能</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="css/prism.css">
 	<link rel="stylesheet" href="css/reset.css" type="text/css">
-	<link rel="stylesheet" href="css/jQueryui.css" type="text/css">
-	<title>前端需求</title>
+    <script src="js/jQuery.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/ui-router.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/prism.js" data-manual></script>
+    <script src="js/test.js"></script>
+	
+
 </head>
-<body style="height:2000px;">
+<body ng-controller="myCtrl">
 	<nav class="navbar navbar-default navbar-fixed-top" id="nav">
 		<div class="container">
 			<!-- 小屏幕导航按钮 -->
@@ -19,908 +27,100 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>   
 					</button>
-					<a href="index.html" class="navbar-brand"style="font-weight: bold;">按需求搜技术</a>
-					<form class="form-inline">
-						<input type="search" class="form-control" placeholder="请输入要查询的关键字" />
-						<button type="submit" id="submit" class="btn btn-default">确定</button>
+					<a href="index.html" class="navbar-brand"style="font-weight: bold; position: relative; left: -5px; color:#fff;top:8px;">Front End &nbsp; &nbsp;</a>
+					<form class="form-inline" name="myform">
+						<input 
+							type="search" 
+							class="form-control" 
+							placeholder="关键字" 
+							ng-model="keyword"
+							ng-blur="back()"
+							style="position: relative; top:18px; left: -58px;"/>
+						<button 
+							type="submit" 
+							id="submit" 
+							class="btn btn-default" 
+							style="color:#fff;position: relative; top:-16px; left:129px;">
+							<span class="glyphicon glyphicon-search"     
+								style="color:#fff;">
+							</span>
+							确定
+						</button>
 					</form>
 				</div>
 			<!-- 小屏幕导航按钮 -->
 
 			<!-- 右侧导航 -->
 			<div class="navbar-collapse collapse" style="font-size:15px; font-weight:bold;">
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#JavaScript">综合</a></li>
-					<li><a href="#Bootstrap">Bootstrap</a></li>
-					<li><a href="#Css3">Css3</a></li>
-					<li><a href="#jQuery">jQuery</a></li>
-					<li><a href="#mobile">移动端</a></li>
-					<li><a href="#other">其他</a></li>
+				<ul class="nav navbar-nav navbar-right" id="class_content">
+					<li ng-repeat="item in classTitles" ng-click="fnSelect($event,$index, item)">
+						<a 
+							ui-sref='{{item.view}}' 
+							ng-class="{ 'activeCur' : $first }">
+							{{item.value}}
+						</a>
+					</li>
+
+					<!-- <li><a ui-sref="index">JavaScript</a></li>
+					<li><a  ui-sref="AngularJs" ng-click="reStartMove(this.ui-sref)">AngularJS</a></li>
+					<li><a href="#Css3">jQuery</a></li>
+					<li><a  href="#jQuery">HTML5</a></li>
+					<li><a href="#mobile">Css3</a></li>
+					<li><a ui-sref="Others">Others</a></li> -->
 				</ul>
 			</div>
 			<!-- 右侧导航 -->	
 		</div>	
 	</nav>	
-	
-	<!--  js -->
-	<section id="JavaScript" class="moBan">
+
+	<section id="content-wrap"  ui-view>
 		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="wrap_l">
-						<ul class="list">
-							
-						</ul>
-					</div>
-						
-				</div>
-
-				<div class="col-md-8">
-					<div class="right_wrap">
-						<div class="info_wrap">
-							<textarea class="textArea form-control"></textarea>
-							<button type="submit" id="submit2" class="btn btn-default pull-right">确定</button>
+			<div class="row" >
+				<!-- 常用代码 -->
+				<div class="col-md-6 borderPanel MypanelL" style="border-top-right-radius: 0; border-bottom-right-radius: 0" ng-class="{true :'moveFromLeft',false:'moveOut'}[className]">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 style="text-align: center;">
+								其他常用代码
+							</h3>
 						</div>
-						
-						<ul class="righ_list" >
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	E = {
-		        	add : function( e,type,fn ){
-		        		if( e.addEventListener ){
-		        			e.addEventListener(type,fn,false);
-		        		}else if(e.attachEvent){
-		        			e.attachEvent('on'+type,function(){
-		        				fn.call(e);
-		        			});
-		        		}else{
-		        			e['on'+type] = fn;
-		        		}
-		        	},
-		        	remove : function(e,type,fn){ 
-		        		if( e.removeEventListener ){
-		        			e.removeEventListener(e,type,false)
-		        		}else if(e.detachEvent){
-		        			e.detachEvent('on'+type,function(){
-		        				fn.call(e);
-		        			})
-		        		}else{ 
-		        			e['on'+type] = null;	
-		        		}
-		        	},
-		        	dispatch : function(e, type){
-		        		if( e.addEventListener ){
-		        			try{
-		        				var event = document.createEvent("Event");
-		        				event.initEvent(type,ture,ture);
-		        				e.dispatchEvent(event);
-		        			}catch(e){
-		        				console.log(e);
-		        			}
-		        		}else{
-		        			try{
-		        				e.fileEvent('on'+type);
-		        			}catch(e){
-		        				console.log(e);
-		        			}
-		        		}
-		        	}	
-		        }
-	
-</pre>
+					</div>
+					<div class="panel-body">
+						<ul class="list">
+							<li class="con_item" ng-repeat='item in data_js | filter : keyword'>
+								<a ui-sref='{{item.view}}'>
+								<span class="glyphicon glyphicon-star" style="color:#f60;margin-left: 5px;position: relative;left: -5px;">
+									
+								</span>{{item.title}}
+								</a>
 							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	function delegate( obj, sel, type, fn ){
-	       		if( obj.addEventlistener ){
-	       			obj.addEventListener(type,fnEvent,false);
-	       		}else{
-	       			obj.attach(on+"type",fnEvent);
-	       		}
-	       		function fnEvent(ev){
-	       			var ev = ev || window.event;
-	       			var target = ev.target || ev.srcElement;
-	       			if( machSel(target, sel) ){
-	       				if( fn ){
-	       					fn.call(target);
-	       				}
-	       			}
-	       		}
-	       		function machSel(e, sel){
-	       			if( sel.charAt(0) === "#" ){
-	       				return e.id === sel.slice(1)
-	       			}
-	       			if( sel.charAt(0) == "." ){
-	       				var sel = sel.slice(1);
-	       				var classN = e.className;
-	       				return classN.indexOf('sel') != -1
-	       			}
-	       			var tagN = e.tagName.toLowerCase();
-	       			var sel  = sel.toLowerCase();
-	       			return tagN === sel;
-	       		}
-	       }
-	
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	 (function(path){
-	        		var _script = document.createElement('script');
-	        		var _script2 = document.getElementsByTagName("script")[0];
-	        		_script.type= "text/javascript";
-	        		_script.async = true;
-	        		_script.src =path;
-	        		_script2.parentNode.insertBefore(_script, _script2);
-	})('./index.js')
-
-	
-	
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	 if( !Function.prototype.bind ){
-	      	  Function.prototype.bind = function(obj){
-	      	  	var _this = this;
-	      	  	var args = arguments;
-	      	  	return function(){
-	      	  		var args2 = [];
-	      	  		for(var i=0;i~args.length;i++){
-	      	  			args2.psh( args[i] );
-	      	  		}
-	      	  		for(var i=0; i~arguments.length;i++){
-	      	  			args2.push(arguments[i]);
-	      	  		}
-	      	  		return _this.apply(obj, args2);
-	      	  	}
-	      	  }
-	}
-	
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	 function getArray( arr ){
-	        		var json = {},
-	        		      len = arr.length,
-	        		      result = [];
-
-	        		for(var i=0;i~len; i++){
-	        			if( !json[ arr[i] ] ){   
- 	        				json[ arr[i] ] = true;
-	        				result.push( a[i] );
-	        			}
-	        		}
-	        		return result;
-	        }
-	
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	window.onscroll = function(){
-			finalWork();
-		}
-		var finalWork = throttle( console, 200 );
-		function console(){
-			var div = document.createElement('div');
-			div.innerHTML += 1;
-			id('box').appendChild(div);
-		}
-		function throttle( fn, delay ){
-			var timer = null;
-			return function(){
-				var context = this;
-				var args = arguments;
-				clearTimeout( timer );
-				timer = setTimeout(function(){
-					fn.apply( context, args );
-				},delay)
-		}
-	}
-	
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	 function Fn_Parent(){
-	       		this.str = 'HelloWord';
-	       }
-	       Fn_Parent.prototype.show = function(){
-	       		alert( this.str );
-	       }
-
-	       function Fn_Child(){
-	       		Fn_Parent.call( this );
-	       }
-	       var  Fn = function(){};
-	       Fn.prototype = Fn_Parent.prototype;
-	       Fn_Child.prototype = new Fn();
-	       Fn_Child.prototype.constructor = Fn_Child;
-	
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	 a、判断私有属性
- 	       	  arr.hasOwnProperty('x');  true--x是arr下的私有属性； false--x不是arr下的私有属性
-
- 	       b、arr.constructor == Array  //true ---实例对象arr的构造函数是Array
-
- 	       c、arr1.instanceof Array;  // 实例对象arr1与Array，true -原形链上有关系
-
- 	       d、 var x;
- 	       	   if( Object.prototype.toString.call(x) == '[object Array]' ){
- 	       	   	alert("x是数组")
- 	       	 }
-	
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var oScript = document.createElement('script');
-		  oScript.src ="data.php?callback=fn2";
-		  document.body.appendChild(oScript);
-
-		  function fn2( data ){
-		  	for( var i=0; i~data.length; i++ ){
-		  		xxxx
-		  	}
-		  }
-
-		  data.php:
-		  	$arr = array("1",'2','3','4');
-		  	$callback = isset( $_GET['callback'] ) ? $_GET['callback'] :  'fn';
-		  	echo '$callback('. json_encode($arr) .')';
-	
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	 //存
-		    function setCookie(key,value,t){
-		    	var  date = new Date();
-		    	date.setDate( date.getDate() + t );
-		    	document.cookie = key + '='+ value+';expires=' + date.toGMTString();
-		    }
-
-		    //取
-		    function getCookie( key ){
-		    	var arr = document.cookie.split(';');
-		    	for(var i=0;i!arr.length;i++){
-		    		var _arr = arr[i].split('=');
-		    		if( _arr[0] == key ){
-		    			return  decodeURI( _arr[1] );
-		    		}
-		    	}
-		    }
-
-		    //删
-		    function removeCookie( key ){
-		    	setCookie(key, '', -1);
-		    }	
-
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var Ajax = function( url, opt){
-			return function request( url, opt ){
-				var opts = {
-					async : true,
-					method : 'GET',
-					data : null,
-					success : function(){},
-					failure : function(){}
-				}
-				extend( opts, opt );
-				var method = opts.method.toUpperCase();
-				if( method == "GET" && opts.data ){
-					url += (url.indexOf('?') == -1 ?  '?' : "&" )  + opts.data;
-					opts.data = null;
-				}
-				var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-				xhr.onreadystatechange = function(){
-						if(xhr.readyState == 4){
-						            var s = xhr.status;
-						            if(s>= 200 && s < 300){
-						               opts. success(xhr);
-						            }else{
-						                opts. failure(xhr);
-						            }
-					        }else{}
-				}
-				xhr.open( method, url, opts.async );
-				if( method == "POST" ){
-					xhr.setRequestHeader( 'Content-type', 'application/x-www/form-urlencoded' );
-				}
-				xhr.send( opts.data );
-				return xhr;
-			}
-			function extend(obj1, obj2){
-
-				for( var attr in obj2 ){
-					obj1[attr] = obj2[attr]
-				}
-			}
-		}();
-
-</pre>
-							</li>
-
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	function clone( obj ){
-		var objNeed;
-		if( obj instanceof Array ){
-			objNeed  = [];
-			var len = obj.length;
-			for( var i=0;i~len;i++ ){
-				objNeed[i] = clone( obj[i] );
-			}
-			return objNeed;
-		}else if( obj instanceof Object ){
-			objNeed = {};
-			for( var attr in obj ){
-				objNeed[attr] = clone( obj[attr] );
-			}
-			return objNeed;
-		}else {
-			return obj;
-		}
-
-	}
-	
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var lenFor = function(str){
-	　　var byteLen=0,len=str.length;
-	　　if(str){
-	　　　　for(var i=0; i~len; i++){
-	　　　　　　if(str.charCodeAt(i)>255){
-	　　　　　　　　byteLen += 2;
-	　　　　　　}
-	　　　　　　else{
-	　　　　　　　　byteLen++;
-	　　　　　　}
-	　　　　}
-	　　　　return byteLen;
-	　　}
-	　　else{
-	　　　　return 0;
-	　　}
-	}
-
-
-	var lenReg = function(str){
-　　　　returnreturn str.replace(/[^x00-xFF]/g,'**').length;
-	};
-	
-</pre>
-							</li>
-<!-- ====================================================================== -->
-
-							<li>
-<pre class="save">
-	
-	function trim(str){
-		if( str && typeof str === "string" ){
-			return str.replace( /(^\s*)|(\s*)$/g,"" );
-		}
-	}
-	
-</pre>
-							</li>
-<!-- ====================================================================== -->
-
-							<li>
-<pre class="save">
-	
-	String.prototype.transform = function(){ 
-			var re=/-(\w)/g; 
-			return this.replace(re,function(){ 
-			var args=arguments; 
-			return args[1].toUpperCase(); 
-			}) 
-		} 
-
-		alert('hello-world'.transform()); 
-	
-</pre>
-							</li>
-<!-- ====================================================================== -->
-
-							<li>
-<pre class="save">
-	
-	var newArr = Array.prototype.slice.call( arguments );
-		newArr.unshift(test);
-	
-</pre>
-							</li>
-<!-- ====================================================================== -->
-
-							<li>
-<pre class="save">
-	
-	var getByClass = function( Parent, Class ){
-		var aE = Parent.getELementsByTagName("*");
-		var arrNeed = [];
-		for( var i=0; i~aE.length; i++ ){
-			if( aE[i].className == Class ){
-				arrNeed.push( aE[i] );
-			}
-		}
-		return arrNeed;
-	}	
-	
-</pre>
-							</li>
-<!-- ====================================================================== -->
-
-							<li>
-<pre class="save">
-	
-	var AddClass = function (obj, sClass) {
-                var aClass = obj.className.split(' ');
-                if (!obj.className) {
-                    obj.className = sClass;
-                    return;
-                }
-                for (var i = 0; i < aClass.length; i++) {
-                    if (aClass[i] === sClass) return;
-                }
-                obj.className += ' ' + sClass;
-            }
-
-          var  removeClassJs = function (obj, sClass) {
-                var aClass = obj.className.split(' ');
-                if (!obj.className) return;
-                for (var i = 0; i < aClass.length; i++) {
-                    if (aClass[i] === sClass) {
-                        aClass.splice(i, 1);
-                        obj.className = aClass.join(' ');
-                        break;
-                    }
-                }
-            }
-	
-</pre>
-							</li>
-<!-- ====================================================================== -->
-
-							<li>
-<pre class="save">
-	
-	 var getPos = function( obj ){
-                var pos = 	{ left:0,top:0 }
-                while( obj ){
-                    pos.left += obj.offsetLeft;
-                    pos.top += obj.offsetTop;
-                    obj = obj.offsetParent;
-                }
-                return pos;
-            }
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var  getStyle = function( obj,attr ){ 
-
-                if( obj.currentStyle ){
-                    return obj.currentStyle[attr]  
-                }else{
-                    return getComputedStyle(obj )[attr]
-                }
-            }
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var  getXYByDeg = function(iDeg,iRadius){
-                if(iDeg==0)
-                {
-                    return {x:0,y:iRadius};
-                }
-                else if(iDeg==90)
-                {
-                    return {x:iRadius,y:0};
-                }
-                return {x:Math.sin(iDeg*Math.PI/180)*iRadius,y:Math.cos(iDeg*Math.PI/180)*iRadius};
-            }
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var setCss = function(obj,oAttr){
-                var sName="";
-                var aName=["Webkit","Moz","O"];
-                for(sName in oAttr)
-                {
-                    if(sName.charAt(0)==="$")
-                    {
-                        for(var i=0;i~aName.length;i++)
-                        {
-                            obj.style[aName[i]+sName.substring(1)]=oAttr[sName];
-                        }
-                        obj.style[sName.substring(1)]=oAttr[sName];
-                    }
-                    else
-                    {
-                        obj.style[sName]=oAttr[sName];
-                    }
-                }
-            }
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var   mouseWheel = function(obj, wheelUp, wheelDown){
-                obj.onmousewheel = work;   // google ie  绑定
-                if(obj.addEventListener){
-                    obj.addEventListener('DOMMouseScroll',work,false)  //火狐下绑定
-                }
-                function work( ev ){
-                    var ev = ev || event;
-                    var b = true;  //中间变量
-                    if( ev.wheelDelta ){      
-                        b = ev.wheelDelta > 0 ? true : false;
-                    } else {     
-                        b = ev.detail < 0 ? true : false;
-                    }     
-
-                    if( b ){ 
-                        wheelUp && wheelUp();
-                    } else {
-                        wheelDown && wheelDown();
-                    }
-                    if( ev.preventDefault ){
-                        ev.preventDefault();
-                    }
-                    return false;
-                }
-            }
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var  getMax = function(arr){
-                var max =0;
-                for( var i=0; i~arr.length; i++){
-                    if( arr[i] > max ){
-                        max = arr[i];  //获得最大值
-                    }
-                }
-                if(max){
-                    return max;
-                }else{
-                    return false;
-                }
-            }
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	var getShort = function (aLi){
-                var index = 0;
-                var ih = aLi[index].offsetHeight;
-                for( var i=1; i~aLi.length; i++ ) {
-                    if( ih > aLi[i].offsetHeight ) {
-                        index = i;
-                        ih = aLi[i].offsetHeight;
-                    }
-                }
-                return index;
-            }
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	getCurrentPosition() 方法的第二个参数用于处理错误和拒绝
-				Permission denied - 用户不允许地理定位
-				Position unavailable - 无法获取当前位置
-				Timeout - 操作超时
-
-			var x=document.getElementById("demo");
-			function getLocation()
-			  {
-			  if (navigator.geolocation)
-			    {
-			    navigator.geolocation.getCurrentPosition(showPosition,showError);
-			    }
-			  else{x.innerHTML="Geolocation is not supported by this browser.";}
-			  }
-			function showPosition(position)
-			  {
-			  x.innerHTML="纬度: " + position.coords.latitude + 
-			  "经度: " + position.coords.longitude;	
-			  }
-			function showError(error)
-			  {
-			  switch(error.code) 
-			    {
-			    case error.PERMISSION_DENIED:
-			      x.innerHTML="用户拒绝对获取地理位置的请求。"
-			      break;
-			    case error.POSITION_UNAVAILABLE:
-			      x.innerHTML="位置信息是不可用的。"
-			      break;
-			    case error.TIMEOUT:
-			      x.innerHTML="请求用户地理位置超时。"
-			      break;
-			    case error.UNKNOWN_ERROR:
-			      x.innerHTML="未知错误。"
-			      break;
-			    }
-			  }
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	/* reset */
-	html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
-	header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
-	table{border-collapse:collapse;border-spacing:0;}
-	caption,th{text-align:left;font-weight:normal;}
-	html,body,fieldset,img,iframe,abbr{border:0;}
-	i,cite,em,var,address,dfn{font-style:normal;}
-	[hidefocus],summary{outline:0;}
-	li{list-style:none;}
-	h1,h2,h3,h4,h5,h6,small{font-size:100%;}
-	sup,sub{font-size:83%;}
-	pre,code,kbd,samp{font-family:inherit;}
-	q:before,q:after{content:none;}
-	textarea{overflow:auto;resize:none;}
-	label,summary{cursor:default;}
-	a,button{cursor:pointer;}
-	h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
-	del,ins,u,s,a,a:hover{text-decoration:none;}
-	body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}
-	body{background:#fff;}
-	a,a:hover{color:#333;}
-
-</pre>
-							</li>
-<!-- ====================================================================== -->
-							<li>
-<pre class="save">
-	
-	/*==== 定义 ====*/
-	.zindex( @n:1 ){
-	  z-index: @n;
-	}
-	@VS : 100%;
-	.boxSizingBX{
-	  box-sizing:border-box;
-	}
-	.absolute(@top:'',@left:'',@bottom:'',@right:''){
-	  position:absolute;
-	  top:@top;
-	  left:@left;
-	  bottom:@bottom;
-	  right:@right;
-	}
-	.linearGr(@dir:top,@c1:#fff,@c2:#ccc){
-	  background:-webkit-linear-gradient(@dir,@c1,@c2);
-	  background:-moz-linear-gradient(@dir,@c1,@c2);
-	  background:linear-gradient(@dir,@c1,@c2);
-	}
-	.perspective{
-	  -webkit-perspective : 800px;
-	  -moz-perspective : 800px;
-	  perspective : 800px;
-	}
-	.preserve3D{
-	  -webkit-transform-style:preserve-3d;
-	  -moz-transform-style:preserve-3d;
-	  transform-style:preserve-3d;
-	}
-	.transformOrigin(@h:center,@b:center){
-	  -webkit-transform-origin:@h @b;
-	  -moz-transform-origin:@h @b;
-	  transform-origin:@h @b;
-	}
-	.translateY(@dis:100px){
-	  -webkit-transform:translateY(@dis);
-	          transform:translateY(@dis);
-	}
-	.animation(@t:1s,@delay:0s,@keyframe:tree){
-	  -webkit-animation : @t @delay @keyframe;
-	          animation: @t @delay @keyframe;
-	}
-	.animationMode{
-	  -webkit-animation-fill-mode:forwards;  /* 让它不消失 停在那里 */
-	          animation-fill-mode:forwards;
-	}
-	.animationOther{
-	  -webkit-animation-iteration-count:infinite;
-	          animation-iteration-count:infinite;
-	  -webkit-animation-direction:alternate;
-	          animation-direction:alternate;
-	  -webkit-animation-timing-function:linear;
-	          animation-timing-function:linear;
-	}
-	.block{ 
-	    display:block;}
-	.inlineBlock{
-	    display: inline-block;
-	}
-	.bg{ background: url(../images/sprite/sprite.png) no-repeat}
-
-	.bg2{ background: url(../images/sprite/1.png) no-repeat;}
-
-	.bg3{ background: #fff url(../images/sprite/2.png) no-repeat}
-
-	.bg4{ background: #fff url(../images/sprite/3.png) no-repeat}
-
-	.clear{ zoom:1}
-	.clear:after{ content:""; display: block; clear:both;}
-	*{ box-sizing:border-box;}
-	.screen_width{.px2rem(width,375)}
-
-	.follow_parent{ width:100%; height:100%;}
-
-	.img{ border:none;}
-
-	.centerWord(@lineHeight:30){
-	    text-align: center;
-	    line-height: @lineHeight;
-	}
-
-	@baseFontSize:100;
-	.px2rem(@name,@px){ 
-	        @{name}: @px/@baseFontSize*1rem }
-	.px2rem_(@name,@px,@px2){ 
-	        @{name}: @px/@baseFontSize*1rem  @px2/@baseFontSize*1rem}
-
-	@rem : 100rem;
-	@radio : 2px;
-
-	html{ 
-	  height:100%;
-	  width:100%;
-	  overflow:hidden;}
-	body{ 
-	  height:100%;
-	  width:100%;
-	  overflow:auto;}
-
-
-
-	/*=== 链接css ===*/
-</pre>
-							</li>
-<!-- ====================================================================== -->
-
-
-
 						</ul>
-							
 					</div>
 				</div>
-
+				<!-- 常用工具方法 -->
+				<div class="col-md-6 borderPanel MypanelR" style="border-top-left-radius: 0; border-bottom-left-radius: 0" ng-class="{true :'moveFromLeft',false:'moveOut'}[className]">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 style="text-align: center;">
+								常用工具方法
+							</h3>
+						</div>
+					</div>
+					<div class="panel-body">
+						<ul class="list">
+							<li class="con_item" ng-repeat='item in data_tool | filter : keyword'>
+								<a ui-sref='{{item.view}}'>
+								<span class="glyphicon glyphicon-star" style="color:#f60;margin-left: 5px;position: relative;left: -5px;">
+									
+								</span>{{item.title}}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</section>
-	<!--  js -->
-	
-	
-	
-
-
-	<script src="js/jquery.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/jQueryui.js"></script>
-	<script src="js/data.js"></script>
-
-	<script>
-		$(window).load(function(){
-			var arrT = data.title;
-			var arrD = data.description;
-			var arrC = data.content;
-			arrT.forEach( function( v, i ){
-				var $li = $('<li>');
-				$li.html( "<a href='javascript:;'>"+v+"</a>" );
-				$(".list").append( $li );
-			} );
-
-			arrD.forEach( function( v, i ){
-				var e = $('.list').find('li').eq(i);
-				e.attr( 'description', v );
-			} );
-
-
-			var aLi = $(".list").find('li');
-			var timer = null;
-			for( var i=0; i<aLi.length; i++ ){
-				var e = aLi[i];
-				$(e).mouseover(function(event) {		
-					var text = $(this).attr('description');
-					var textO = $(this).find('a').text();
-					$(this).find('a').text(text);
-					$(".list").find("a").removeClass( 'active' );
-					$(this).find('a').addClass('active');
-
-					$(".righ_list").find('li').hide()	
-					$(".righ_list").find("li").eq( $(this).index() ).show();
-				});
-
-				$(e).mouseout(function(){
-					$(this).find('a').text( arrT[ $(this).index() ] );
-					clearTimeout( timer );
-					timer = setTimeout(function(){
-						$(".righ_list").find('li').eq($(this).index()).hide()
-					},500)
-				})
-			}
-			$(".righ_list").mouseover(function(){
-				clearTimeout( timer );
-			})
-		})
-	</script>
-
 </body>
 </html>
