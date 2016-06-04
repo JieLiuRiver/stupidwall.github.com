@@ -94,44 +94,53 @@
 		{ view : 'imgInvalid', title : '自定义图形验证指令' },
 		{ view : 'searchFilter', title : '搜索框过滤功能' },
 		{ view : 'ui-sref', title : '通过ui-sref指令构建链接' },
-        { view : 'service', title : '自定义服务Provider' },
-        { view : '$q', title : '$q延迟' },
-        { view : 'config', title : '服务的供应商xxxProvider' },
-        { view : 'ngcache', title : '缓存服务ngcache' },
-        { view : '$interpolate', title : '插值服务$interpolate'},
-        { view : '$location', title : '$location服务 && $anchorScroll锚点跳转服务'},
-        { view : '$http', title : '$http服务'},
-        { view : '$angularTool', title : 'AngularJs常用工具'},
-        { view : '$directiveContact', title : '指令之间的通信'},
-        { view : 'drag', title : '自定义拖拽指令'},
-        { view : 'tab', title : '自定义选项卡指令'},
-        { view : 'tab', title : '自定义选项卡指令'},
-        { view : 'newValid', title : '表单验证新方式'},
-        { view : 'Fn', title : '面向对象写法 as' },
-        { view : 'angularPlug', title : 'Angular等插件'},
-        { view : 'angularPCA', title : '省市区自定义指令的使用'},
-        { view : 'angularPagination', title : '分页自定义指令的使用'},
-        { view : 'angularLoading', title : 'angularLoading加载过程中的效果的实现'},
-        { view : 'commobox', title : '自定义的下拉列表框标签指令commobox' },
-        { view : 'decimal', title : '关于小数点精度插件' },
-        { view : 'comboxtable', title : '下拉列表表格分页，标签指令使用' },
-        { view : 'ui-tree', title : 'angular-ui-tree插件使用' }
-
+	        { view : 'service', title : '自定义服务Provider' },
+	        { view : '$q', title : '$q延迟' },
+	        { view : 'config', title : '服务的供应商xxxProvider' },
+	        { view : 'ngcache', title : '缓存服务ngcache' },
+	        { view : '$interpolate', title : '插值服务$interpolate'},
+	        { view : '$location', title : '$location服务 && $anchorScroll锚点跳转服务'},
+	        { view : '$http', title : '$http服务'},
+	        { view : '$angularTool', title : 'AngularJs常用工具'},
+	        { view : '$directiveContact', title : '指令之间的通信'},
+	        { view : 'drag', title : '自定义拖拽指令'},
+	        { view : 'tab', title : '自定义选项卡指令'},
+	        { view : 'tab', title : '自定义选项卡指令'},
+	        { view : 'newValid', title : '表单验证新方式'},
+	        { view : 'Fn', title : '面向对象写法 as' },
+	        { view : 'angularPlug', title : 'Angular等插件'},
+	        { view : 'angularPCA', title : '省市区自定义指令的使用'},
+	        { view : 'angularPagination', title : '分页自定义指令的使用'},
+	        { view : 'angularLoading', title : 'angularLoading加载过程中的效果的实现'},
+	        { view : 'commobox', title : '自定义的下拉列表框标签指令commobox' },
+	        { view : 'decimal', title : '关于小数点精度插件' },
+	        { view : 'comboxtable', title : '下拉列表表格分页，标签指令使用' },
+	        { view : 'ui-tree', title : 'angular-ui-tree插件使用' }
 	];
 	var data_lodash = [
 		{ view : 'lodash_array', title : '关于数组Array' }
+	];
+	var data_jQuery_pluging = [
+		{ view : 'mockjax', title : 'mockJax/mockJson不让后端拖后腿' },
+		{ view : 'barcode', title : '生成条形码' },
+		{ view : 'zTree', title : '强大的zTree树结构' },
+		{ view : 'upload', title : '文件上传插件' },
+		{ view : 'pca', title : '省市区地址三级联动插件' },
+		{ view : 'dragPanel', title : '可拖拽可缩放的面板' },
+		{ view : 'niceSelect', title : '美化下拉框插件' },
+		{ view : 'excel', title : 'HTML表格内容导出到Excel' }
 	];
 	var data = {
 		data_js : data_js,
 		data_tool : data_tool,
 		data_ng : data_ng,
 		data_angular : data_angular,
-		data_lodash :data_lodash
+		data_lodash :data_lodash,
+		data_jQuery_pluging : data_jQuery_pluging
 	};
 	var app = angular.module('myApp',['ui.router']);
-	app.value('data',data); //服务
-    	app.service('move',function(){
-
+		app.value('data',data); //服务
+	    	app.service('move',function(){
    	 });
 
 	app.controller('myCtrl',[
@@ -146,6 +155,7 @@
 	$scope.data_ng = data.data_ng;
 	$scope.data_angular =data.data_angular;
 	$scope.data_lodash = data.data_lodash;
+	$scope.data_jQuery_pluging  = data.data_jQuery_pluging;
 	$scope.keyword = '';
 
 	        $scope.timer = null;
@@ -649,10 +659,42 @@
 				url : '/Bootstrap',
 				templateUrl : 'Bootstrap/Bootstrap.html'
 			})
+			.state('mockjax',{
+				url : '/mockjax',
+				templateUrl : 'jQuery/mockjax.html'
+			})
+			.state('barcode',{
+				url : '/barcode',
+				templateUrl : 'jQuery/barcode.html'
+			})
+			.state('zTree',{
+				url : '/zTree',
+				templateUrl : 'jQuery/zTree.html'
+			})
+			.state('upload',{
+				url : '/upload',
+				templateUrl : 'jQuery/upload.html'
+			})
+			.state('pca',{
+				url : '/pca',
+				templateUrl : 'jQuery/pca.html'
+			})
+			.state('dragPanel',{
+				url : '/dragPanel',
+				templateUrl : 'jQuery/dragPanel.html'
+			})
+			.state('niceSelect',{
+				url : '/niceSelect',
+				templateUrl : 'jQuery/niceSelect.html'
+			})
+			.state('excel',{
+				url : '/excel',
+				templateUrl : 'jQuery/excel.html'
+			})
 			.state('index',{
 				url : '',
 				templateUrl : 'homeBack.html'
-			})
+			})  
 	});
 
     app.directive('myDriective',function(){
