@@ -128,7 +128,8 @@
 		{ view : 'pca', title : '省市区地址三级联动插件' },
 		{ view : 'dragPanel', title : '可拖拽可缩放的面板' },
 		{ view : 'niceSelect', title : '美化下拉框插件' },
-		{ view : 'excel', title : 'HTML表格内容导出到Excel' }
+		{ view : 'excel', title : 'HTML表格内容导出到Excel' },
+		{ view : 'validate', title : 'validate.js强大的表单验证' }
 	];
 	var data = {
 		data_js : data_js,
@@ -690,6 +691,10 @@
 			.state('excel',{
 				url : '/excel',
 				templateUrl : 'jQuery/excel.html'
+			})
+			.state('validate',{
+				url : '/validate',
+				templateUrl : 'jQuery/validate.html'
 			})
 			.state('index',{
 				url : '',
