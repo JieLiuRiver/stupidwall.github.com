@@ -131,13 +131,18 @@
 		{ view : 'excel', title : 'HTML表格内容导出到Excel' },
 		{ view : 'validate', title : 'validate.js强大的表单验证' }
 	];
+	var data_BootStrap_pluging = [
+		{ view : 'form_layout', title :  'masget_表单布局模版' },
+		{ view : 'datepicker', title :  'datepicker日期插件使用' }
+	];
 	var data = {
 		data_js : data_js,
 		data_tool : data_tool,
 		data_ng : data_ng,
 		data_angular : data_angular,
 		data_lodash :data_lodash,
-		data_jQuery_pluging : data_jQuery_pluging
+		data_jQuery_pluging : data_jQuery_pluging,
+		data_BootStrap_pluging :data_BootStrap_pluging
 	};
 	var app = angular.module('myApp',['ui.router']);
 		app.value('data',data); //服务
@@ -157,6 +162,7 @@
 	$scope.data_angular =data.data_angular;
 	$scope.data_lodash = data.data_lodash;
 	$scope.data_jQuery_pluging  = data.data_jQuery_pluging;
+	$scope.data_BootStrap_pluging  = data.data_BootStrap_pluging;
 	$scope.keyword = '';
 
 	        $scope.timer = null;
@@ -660,10 +666,14 @@
 				url : '/Bootstrap',
 				templateUrl : 'Bootstrap/Bootstrap.html'
 			})
+			.state('datepicker',{
+				url : '/datepicker',
+				templateUrl : 'Bootstrap/datepicker.html'
+			})
 			.state('mockjax',{
 				url : '/mockjax',
 				templateUrl : 'jQuery/mockjax.html'
-			})
+			}) 
 			.state('barcode',{
 				url : '/barcode',
 				templateUrl : 'jQuery/barcode.html'
@@ -696,6 +706,10 @@
 				url : '/validate',
 				templateUrl : 'jQuery/validate.html'
 			})
+			.state('form_layout',{
+				url : '/form_layout',
+				templateUrl : 'Bootstrap/form_layout.html'
+			}) 
 			.state('index',{
 				url : '',
 				templateUrl : 'homeBack.html'
