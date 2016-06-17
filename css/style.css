@@ -248,7 +248,7 @@ pre{
 #content-wrap code[class*="language-"], pre[class*="language-"]{
       font-family: cursive;
       color:#fff !important;
-	  font-size:20px !important;
+	font-size:14px !important;
 }
 
 .con_item{ 

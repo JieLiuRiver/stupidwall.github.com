@@ -12,7 +12,9 @@
 		{ view : 'baiduMap' , title : '调用百度地图'},
 		{ view : 'geolocation' , title : '获取当前地理坐标'},
 		{ view : 'treeMenu' , title : '树形菜单导航'},
-		{ view : 'scrollFixed', title : '滚动时导航固定定位' }
+		{ view : 'scrollFixed', title : '滚动时导航固定定位' },
+		{ view : 'aboutArray', title : '关于数组_array' },
+		{ view : 'function', title : 'JavaScript的构建块' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -212,55 +214,55 @@
 		$stateProvider
 			.state('lazyImg',{
 				url : '/lazyLoadImg',
-				 templateUrl : 'lazyLoadImg.html' 
+				 templateUrl : 'JavaScript/lazyLoadImg.html' 
 			})
 			.state('JSON',{
 				url : '/JSON.parse',
-				templateUrl : 'JSON.parse.html'
+				templateUrl : 'JavaScript/JSON.parse.html'
 			})
 			.state('Mp3',{
 				url : '/Mp3',
-				templateUrl : 'Mp3.html'
+				templateUrl : 'JavaScript/Mp3.html'
 			})
 			.state('star',{
 				url : '/star',
-				templateUrl : 'star.html'
+				templateUrl : 'JavaScript/star.html'
 			})
 			.state('filterSpecialWord',{
 				url : '/filterSpecialWord',
-				templateUrl : 'filterSpecialWord.html'
+				templateUrl : 'JavaScript/filterSpecialWord.html'
 			})
 			.state('mobileType',{
 				url : '/mobileType',
-				templateUrl : 'mobileType.html'
+				templateUrl : 'JavaScript/mobileType.html'
 			})
 			.state('orientation',{
 				url : '/orientation',
-				templateUrl : 'orientation.html'
+				templateUrl : 'JavaScript/orientation.html'
 			})
 			.state('removeUrlArea',{
 				url : '/removeUrlArea',
-				templateUrl : 'removeUrlArea.html'
+				templateUrl : 'JavaScript/removeUrlArea.html'
 			})
 			.state('notouchmove',{
 				url : '/notouchmove',
-				templateUrl : 'notouchmove.html'
+				templateUrl : 'JavaScript/notouchmove.html'
 			})
 			.state('baiduMap',{
 				url : '/baiduMap',
-				templateUrl : 'baiduMap.html'
+				templateUrl : 'JavaScript/baiduMap.html'
 			})
 			.state('geolocation',{
 				url : '/geolocation',
-				templateUrl : 'geolocation.html'
+				templateUrl : 'JavaScript/geolocation.html'
 			})
 			.state('treeMenu',{
 				url : '/treeMenu',
-				templateUrl : 'treeMenu.html'
+				templateUrl : 'JavaScript/treeMenu.html'
 			})
 			.state('verifyDate',{
 				url : '/verifyDate',
-				templateUrl : 'verifyDate.html'
+				templateUrl : 'JavaScript/verifyDate.html'
 			})
 			.state('angularPlug',{
 				url : '/angularPlug',
@@ -272,23 +274,23 @@
 			})
 			.state('strDate',{
 				url : '/strDate',
-				templateUrl : 'strDate.html'
+				templateUrl : 'JavaScript/strDate.html'
 			})
 			.state('setXDate',{
 				url : '/setXDate',
-				templateUrl : 'setXDate.html'
+				templateUrl : 'JavaScript/setXDate.html'
 			})
 			.state('getDateSize',{
 				url : '/getDateSize',
-				templateUrl : 'getDateSize.html'
+				templateUrl : 'JavaScript/getDateSize.html'
 			})
 			.state('getCountDown',{
 				url : '/getCountDown',
-				templateUrl : 'getCountDown.html'
+				templateUrl : 'JavaScript/getCountDown.html'
 			})
 			.state('getHowManyWeek',{
 				url : '/getHowManyWeek',
-				templateUrl : 'getHowManyWeek.html'
+				templateUrl : 'JavaScript/getHowManyWeek.html'
 			})
 			.state('commobox',{
 				url : '/commobox',
@@ -304,7 +306,7 @@
 			})
 			.state('format',{
 				url : '/format',
-				templateUrl : 'format.html'
+				templateUrl : 'JavaScript/format.html'
 			})
 			.state('AngularJs',{
 				url : '/angularJs',
@@ -466,38 +468,38 @@
 			   url : '/$route-service',
 			   templateUrl : 'angularJs/$route-service.html'
 		   	})
-            .state('register',{
-                url : '/register',
-                templateUrl : 'angularJs/register.html'
-            })
-            .state('service',{
-                       url : '/service',
-                       templateUrl : 'angularJs/service.html'
-                   })
-            .state('$q',{
-                       url : '/$q',
-                       templateUrl : 'angularJs/$q.html'
-                   })
-            .state('config',{
-                       url : '/config',
-                       templateUrl : 'angularJs/config.html'
-                   })
-            .state('ngcache',{
-                       url : '/ngcache',
-                       templateUrl : 'angularJs/ngcache.html'
-                   })
-            .state('$interpolate',{
-                       url : '/$interpolate',
-                       templateUrl : 'angularJs/$interpolate.html'
-                   })
-            .state('$location',{
-                       url : '/$location',
-                       templateUrl : 'angularJs/$location.html'
-                   })
-            .state('$http',{
-                       url : '/$http',
-                       templateUrl : 'angularJs/$http.html'
-                   })
+		            .state('register',{
+		                url : '/register',
+		                templateUrl : 'angularJs/register.html'
+		            })
+		            .state('service',{
+		                       url : '/service',
+		                       templateUrl : 'angularJs/service.html'
+		                   })
+		            .state('$q',{
+		                       url : '/$q',
+		                       templateUrl : 'angularJs/$q.html'
+		                   })
+		            .state('config',{
+		                       url : '/config',
+		                       templateUrl : 'angularJs/config.html'
+		                   })
+		            .state('ngcache',{
+		                       url : '/ngcache',
+		                       templateUrl : 'angularJs/ngcache.html'
+		                   })
+		            .state('$interpolate',{
+		                       url : '/$interpolate',
+		                       templateUrl : 'angularJs/$interpolate.html'
+		                   })
+		            .state('$location',{
+		                       url : '/$location',
+		                       templateUrl : 'angularJs/$location.html'
+		                   })
+		            .state('$http',{
+		                       url : '/$http',
+		                       templateUrl : 'angularJs/$http.html'
+		                   })
 			.state('$anchoring',{
 			   url : '/$anchoring',
 			   templateUrl : 'angularJs/$anchoring.html'
@@ -524,103 +526,111 @@
 				   })
 			.state('bindEvent',{
 				url : 'bindEvent',
-				templateUrl : 'bindEvent.html'
+				templateUrl : 'JavaScript/bindEvent.html'
+			})
+			.state('function',{
+				url : 'function',
+				templateUrl : 'JavaScript/function.html'
 			})
 			.state('delegate',{
 				url : 'delegate',
-				templateUrl : 'delegate.html'
-			})
+				templateUrl : 'JavaScript/delegate.html'
+			}) 
 			.state('asyncJs',{
 				url : 'asyncJs',
-				templateUrl : 'asyncJs.html'
+				templateUrl : 'JavaScript/asyncJs.html'
+			})
+			.state('aboutArray',{
+				url : 'aboutArray',
+				templateUrl : 'JavaScript/aboutArray.html'
 			})
 			.state('bind',{
 				url : 'bind',
-				templateUrl : 'bind.html'
+				templateUrl : 'JavaScript/bind.html'
 			})
 			.state('norepeat',{
 				url : 'norepeat',
-				templateUrl : 'norepeat.html'
+				templateUrl : 'JavaScript/norepeat.html'
 			})
 			.state('throttle',{
 				url : 'throttle',
-				templateUrl : 'throttle.html'
+				templateUrl : 'JavaScript/throttle.html'
 			})
 			.state('classIn',{
 				url : 'classIn',
-				templateUrl : 'classIn.html'
+				templateUrl : 'JavaScript/classIn.html'
 			})
 			.state('prototypeA',{
 				url : 'prototypeA',
-				templateUrl : 'prototypeA.html'
+				templateUrl : 'JavaScript/prototypeA.html'
 			})
 			.state('jsonp',{
 				url : 'jsonp',
-				templateUrl : 'jsonp.html'
+				templateUrl : 'JavaScript/jsonp.html'
 			})
 			.state('Cookie',{
 				url : 'Cookie',
-				templateUrl : 'Cookie.html'
+				templateUrl : 'JavaScript/Cookie.html'
 			})
 			.state('Ajax',{
 				url : 'Ajax',
-				templateUrl : 'ajax.html'
+				templateUrl : 'JavaScript/ajax.html'
 			})
 			.state('cloneObject',{
 				url : 'cloneObject',
-				templateUrl : 'cloneObject.html'
+				templateUrl : 'JavaScript/cloneObject.html'
 			})
 			.state('calLength',{
 				url : 'calLength',
-				templateUrl : 'calLength.html'
+				templateUrl : 'JavaScript/calLength.html'
 			})
 			.state('Trim',{
 				url : 'Trim',
-				templateUrl : 'Trim.html'
+				templateUrl : 'JavaScript/Trim.html'
 			})
 			.state('tramf',{
 				url : 'tramf',
-				templateUrl : 'tramf.html'
+				templateUrl : 'JavaScript/tramf.html'
 			})
 			.state('realyArray',{
 				url : 'realyArray',
-				templateUrl : 'realyArray.html'
+				templateUrl : 'JavaScript/realyArray.html'
 			})
 			.state('getElementByClass',{
 				url : 'getElementByClass',
-				templateUrl : 'getElementByClass.html'
+				templateUrl : 'JavaScript/getElementByClass.html'
 			})
 			.state('getPosition',{
 				url : 'getPosition',
-				templateUrl : 'getPosition.html'
+				templateUrl : 'JavaScript/getPosition.html'
 			})
 			.state('getStyle',{
 				url : 'getStyle',
-				templateUrl : 'getStyle.html'
+				templateUrl : 'JavaScript/getStyle.html'
 			})
 			.state('getXYBydeg',{
 				url : 'getXYBydeg',
-				templateUrl : 'getXYBydeg.html'
+				templateUrl : 'JavaScript/getXYBydeg.html'
 			})
 			.state('setCss',{
 				url : 'setCss',
-				templateUrl : 'setCss.html'
+				templateUrl : 'JavaScript/setCss.html'
 			})
 			.state('scrollWheel',{
 				url : 'scrollWheel',
-				templateUrl : 'scrollWheel.html'
+				templateUrl : 'JavaScript/scrollWheel.html'
 			})
 			.state('maxMin',{
 				url : 'maxMin',
-				templateUrl : 'maxMin.html'
+				templateUrl : 'JavaScript/maxMin.html'
 			})
 			.state('LessConfig',{
 				url : 'LessConfig',
-				templateUrl : 'LessConfig.html'
+				templateUrl : 'JavaScript/LessConfig.html'
 			})
 			.state('scrollFixed',{
 				url : 'scrollFixed',
-				templateUrl : 'scrollFixed.html'
+				templateUrl : 'JavaScript/scrollFixed.html'
 			})
 			.state('ngResource',{
 				url : 'ngResource',
