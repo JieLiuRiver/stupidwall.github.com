@@ -1,0 +1,37 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+				 /*===============================================*/
+				 /*  	禁止滚动条
+				 /*===============================================*/
+					1、css实现的方法：
+						body{ overflow-x:hidden }
+						
+					2、js实现：
+						document.onmousewheel = function(event){
+							var event = event || window.event;
+							if( event && event.preventDefault ){
+								event.preventDefault();
+								event.stopPropagation();
+							}else{
+								return false;
+							}
+						}
+	
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

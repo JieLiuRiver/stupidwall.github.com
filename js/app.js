@@ -14,7 +14,12 @@
 		{ view : 'treeMenu' , title : '树形菜单导航'},
 		{ view : 'scrollFixed', title : '滚动时导航固定定位' },
 		{ view : 'aboutArray', title : '关于数组_array' },
-		{ view : 'function', title : 'JavaScript的构建块' }
+		{ view : 'function', title : 'JavaScript的构建块' },
+		{ view : 'noScroll', title : 'JS实现禁止滚动条' },
+		{ view : 'methodCal', title : '算法、数据结构' },
+		{ view : 'hashNet', title : '一站式+hash+进场、出场动画处理' },
+      		 { view : 'duilie', title : '队列' },
+      		 { view : 'showPic', title : '炫酷图片作品展示' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -78,7 +83,8 @@
 		{ view : 'ng-style', title : 'ng-style_指定元素的 style 属性' },
 		{ view : 'ng-submit', title : 'ng-submit_规定 onsubmit 事件发生时执行的表达式' },
 		{ view : 'ng-switch', title : 'ng-switch_规定显示或隐藏子元素的条件' },
-		{ view : 'ng-value', title : 'ng-value_规定 input 元素的值' }
+		{ view : 'ng-value', title : 'ng-value_规定 input 元素的值' },
+		{ view : 'angular-strap', title : 'angular-strap模态框使用' },
 	];
 	var data_angular = [
 		{ view : 'invalid', title : 'Angular表单验证' },
@@ -137,6 +143,13 @@
 		{ view : 'form_layout', title :  'masget_表单布局模版' },
 		{ view : 'datepicker', title :  'datepicker日期插件使用' }
 	];
+	var  data_Css3 = [
+		{ view : 'loading', title : "Loading: keyframes、calc、animation、animationPlayState、new Image()" },
+		{ view : 'transitionEnd', title : "transitionEnd事件、判断操作的是元素的左侧右侧" },
+		{ view : 'word3d', title : "文字3d翻转" },
+		{ view : 'Pic3d', title : "3d盒子图片切换" },
+		{ view : 'niceNoteBook', title : "炫酷留言板+分页" }
+	];
 	var data = {
 		data_js : data_js,
 		data_tool : data_tool,
@@ -144,7 +157,8 @@
 		data_angular : data_angular,
 		data_lodash :data_lodash,
 		data_jQuery_pluging : data_jQuery_pluging,
-		data_BootStrap_pluging :data_BootStrap_pluging
+		data_BootStrap_pluging :data_BootStrap_pluging,
+		data_Css3 : data_Css3
 	};
 	var app = angular.module('myApp',['ui.router']);
 		app.value('data',data); //服务
@@ -165,6 +179,7 @@
 	$scope.data_lodash = data.data_lodash;
 	$scope.data_jQuery_pluging  = data.data_jQuery_pluging;
 	$scope.data_BootStrap_pluging  = data.data_BootStrap_pluging;
+	$scope.data_Css3 = data_Css3;
 	$scope.keyword = '';
 
 	        $scope.timer = null;
@@ -200,9 +215,8 @@
 	        	{ id : 3 ,  value : 'jQuery' , view : 'jQuery' },
 	        	{ id : 4 ,  value : 'Mobile' , view : 'Mobile' },
 	        	{ id : 5 ,  value : 'Bootstrap' , view : 'Bootstrap' },
-	        	{ id : 6 ,  value : 'Others' , view : 'Others' }
+	        	{ id : 6 ,  value : 'Css3' , view : 'Css3' }
 	        ]
-
 }]);
 
 
@@ -248,9 +262,25 @@
 				url : '/notouchmove',
 				templateUrl : 'JavaScript/notouchmove.html'
 			})
+			.state('showPic',{
+				url : '/showPic',
+				templateUrl : 'JavaScript/showPic.html'
+			})
+			.state('hashNet',{
+				url : '/hashNet',
+				templateUrl : 'JavaScript/hashNet.html'
+			}) 
 			.state('baiduMap',{
 				url : '/baiduMap',
 				templateUrl : 'JavaScript/baiduMap.html'
+			})  
+			.state('noScroll',{
+				url : '/noScroll',
+				templateUrl : 'JavaScript/noScroll.html'
+			}) 
+			.state('methodCal',{
+				url : '/methodCal',
+				templateUrl : 'JavaScript/methodCal.html'
 			})
 			.state('geolocation',{
 				url : '/geolocation',
@@ -284,6 +314,10 @@
 				url : '/getDateSize',
 				templateUrl : 'JavaScript/getDateSize.html'
 			})
+            .state('duilie',{
+                       url : '/duilie',
+                       templateUrl : 'JavaScript/duilie.html'
+                   })
 			.state('getCountDown',{
 				url : '/getCountDown',
 				templateUrl : 'JavaScript/getCountDown.html'
@@ -312,10 +346,14 @@
 				url : '/angularJs',
 				templateUrl : 'angularJs/angular.index.html'
 			})
+			.state('angular-strap',{
+				url : '/angular-strap',
+				templateUrl : 'angularJs/angular-strap.html'
+			})
 			.state('ng-app',{
 				url : '/ng-app',
 				templateUrl : 'angularJs/ng-app.html'
-			})
+			}) 
 			.state('$directiveContact',{
 				url : '/$directiveContact',
 				templateUrl : 'angularJs/directiveContact.html'
@@ -723,6 +761,30 @@
 			.state('index',{
 				url : '',
 				templateUrl : 'homeBack.html'
+			})
+			.state('loading',{
+				url : 'loading',
+				templateUrl : 'Css3/loading.html'
+			})
+			.state('transitionEnd',{
+				url : 'transitionEnd',
+				templateUrl : 'Css3/transitionEnd.html'
+			})
+			.state('word3d',{
+				url : 'word3d',
+				templateUrl : 'Css3/word3d.html'
+			})
+			.state('niceNoteBook',{
+				url : 'niceNoteBook',
+				templateUrl : 'Css3/niceNoteBook.html'
+			})
+			.state('Pic3d',{
+				url : 'Pic3d',
+				templateUrl : 'Css3/Pic3d.html'
+			}) 
+			.state('Css3',{
+				url : 'Css3',
+				templateUrl : 'Css3/Css3.html'
 			})  
 	});
 

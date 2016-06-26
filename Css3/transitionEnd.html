@@ -1,0 +1,91 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:14px !important; text-shadow: none;">
+		
+					 /*===============================================*/
+					 /*  				TransitionEnd事件、preserve-3d、景深
+					 /*===============================================
+					1、我要给一个元素3d的效果，首先给它的父级：
+						-webkit-transform-style:preserve3d;
+						transform-style:preserve-3d;
+						-webkit-perspective:800px;
+						perspective:800px;
+
+					2、首先让该元素透明度为0,调整到一个状态,然后再出来，切换运动状态
+						ele{
+							opacity : 0;
+							transition:.5s;
+							transform-origin:top;
+							transform:rotateX(30deg);
+
+							-webkit-transition:.5s;
+							-webkit-transform-origin:top;
+							-webkit-transform:rotateX(30deg);
+						}
+					
+					3、js
+					window.onload = function(){
+						oDiv.opacity = 1;
+						oDiv.addEventListener('webkitTransitionEnd', end, false);
+						function end(){
+
+							//首先关掉上面的监听事件，防止冒泡触发产生影响
+							this.removeEventListener('webkitTransitionEnd', end, false);
+							this.style.height = '200px';
+							this.style.top = 'calc( 50% )';
+
+							//做其他业务.....
+						}
+
+						//怎么判断 鼠标移到的是 一个元素的左侧还是右侧呢？
+						oSpan.onmouseover = fnOver;
+						function fnOver ( ev ){
+							var cliX = ev.clientX;
+							var offsetLeft = getPos(this).left;
+							var l = clienX - offsetLeft;
+							this.style.transition = '.5s';
+							if( l > this.offsetWidth/2 ){
+								console.log("R");
+								oSpan.style.WebkitTransform = 'rotateY(30deg)';
+							}else{
+								console.log("L");
+								oSpan.style.WebkitTransform = 'rotateY(-40deg)';
+							}
+						}
+						function getPos( obj ){
+							var pos = 	{ left:0,top:0 }
+							while( obj ){
+								pos.left += obj.offsetLeft;
+								pos.top += obj.offsetTop;
+								obj = obj.offsetParent;
+							}
+							return pos;
+						}
+					}
+
+					//transition  不同属性不同时间
+					4、oClose.onclick = function(){
+						oBox.style.transition = '.8s height,  .6s top, .4s opacity';
+						oBox.style.height = '40px';
+						oBox.style.top = '320px';
+						oBox.style.opacity = 0;
+					}
+				</code>
+			</pre>
+	</div>
+		<!-- <div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	
+				</code>
+			</pre>
+		</div> -->
+
+		<button class="btn pull-right"  ui-sref="Css3" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+</div>
+	
+

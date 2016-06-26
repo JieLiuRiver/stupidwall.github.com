@@ -7,57 +7,112 @@
  /*===============================================*/
  /*  	表单验证新方式
  /*===============================================*/
-     &lt;form novalidate name="nForm"&gt;
-	    	&lt;div&gt;
-	    		&lt;label&gt;用户名:&lt;/label&gt;
-	            &lt;input type="text" name="nText" ng-model="regText.name" 
-	            required ng-pattern="/^[a-zA-Z]+$/" ng-blur="change('regText',nForm.nText.$error)"&gt;
-	            &lt;span ng-repeat=" re in regText.regList | filter : regText.regVal "&gt;{{ re.tips }}&lt;/span&gt;
-	        &lt;/div&gt;
+					     &lt;form novalidate name="nForm"&gt;
+						    	&lt;div&gt;
+						    		&lt;label&gt;用户名:&lt;/label&gt;
+						            &lt;input type="text" name="nText" ng-model="regText.name" 
+						            required ng-pattern="/^[a-zA-Z]+$/" ng-blur="change('regText',nForm.nText.$error)"&gt;
+						            &lt;span ng-repeat=" re in regText.regList | filter : regText.regVal "&gt;{{ re.tips }}&lt;/span&gt;
+						        &lt;/div&gt;
 
-	        &lt;div&gt;
-	    		&lt;label&gt;密码:&lt;/label&gt;
-	            &lt;input type="password" name="nPassword" ng-model="regPassword.name" 
-	            required ng-minlength="6" ng-blur="change('regPassword',nForm.nPassword.$error)"&gt;
-	            &lt;span ng-repeat=" re in regPassword.regList | filter : regPassword.regVal "&gt;{{ re.tips }}&lt;/span&gt;
-	        &lt;/div&gt;
-    &lt;/form&gt;
+						        &lt;div&gt;
+						    		&lt;label&gt;密码:&lt;/label&gt;
+						            &lt;input type="password" name="nPassword" ng-model="regPassword.name" 
+						            required ng-minlength="6" ng-blur="change('regPassword',nForm.nPassword.$error)"&gt;
+						            &lt;span ng-repeat=" re in regPassword.regList | filter : regPassword.regVal "&gt;{{ re.tips }}&lt;/span&gt;
+						        &lt;/div&gt;
+					    &lt;/form&gt;
 
-==========================================
+					==========================================
 
-	var m1 = angular.module('myApp',[]);
-	m1.controller('Aaa',['$scope',function($scope){	
-		$scope.regText = {
-			regVal : 'default',
-			regList : [
-				{ name : 'default' , tips : '请输入用户名'},
-				{ name : 'required' , tips : '用户名不能为空'},
-				{ name : 'pattern' , tips : '用户名必须是字母'},
-				{ name : 'pass' , tips : '√'}
-			]
-		};
-		
-		$scope.regPassword = {
-			regVal : 'default',
-			regList : [
-				{ name : 'default' , tips : '请输入密码'},
-				{ name : 'required' , tips : '密码不能为空'},
-				{ name : 'minlength' , tips : '密码至少6位'},
-				{ name : 'pass' , tips : '√'}
-			]
-		};
-		
-		$scope.change = function( reg , err ){
-			for(var attr in err){
-				if( err[attr] == true ){
-					$scope[reg].regVal = attr;
-					return;
-				}
-			}
-			$scope[reg].regVal = 'pass';
-		};
-	}]);	
+						var m1 = angular.module('myApp',[]);
+						m1.controller('Aaa',['$scope',function($scope){	
+							$scope.regText = {
+								regVal : 'default',
+								regList : [
+									{ name : 'default' , tips : '请输入用户名'},
+									{ name : 'required' , tips : '用户名不能为空'},
+									{ name : 'pattern' , tips : '用户名必须是字母'},
+									{ name : 'pass' , tips : '√'}
+								]
+							};
+							
+							$scope.regPassword = {
+								regVal : 'default',
+								regList : [
+									{ name : 'default' , tips : '请输入密码'},
+									{ name : 'required' , tips : '密码不能为空'},
+									{ name : 'minlength' , tips : '密码至少6位'},
+									{ name : 'pass' , tips : '√'}
+								]
+							};
+							
+							$scope.change = function( reg , err ){
+								for(var attr in err){
+									if( err[attr] == true ){
+										$scope[reg].regVal = attr;
+										return;
+									}
+								}
+								$scope[reg].regVal = 'pass';
+							};
+						}]);	
 
+
+					==========================================
+					第二种：
+					&lt;form name="form">
+						&lt;div class="control-group" ng-class="getClass(form.email)">
+							&lt;label>E-mail&lt;/label>
+							&lt;input type="email" ng-model="user.email" name="email" required>
+							&lt;span ng-show="showError(form.email,'email')">
+								必须是邮箱格式
+							&lt;/span>
+							&lt;span ng-show="showError(form.email, 'required')">
+								不能为空
+							&lt;/span>
+						&lt;/div>
+					&lt;/form>
+					
+					app.controller('ctrl',function($scope){
+						$scope.getClass = function(model){
+							return {
+								error : model.$invalid && model.$dirty,
+								success : model.$valid && model.$dirty
+							}
+						}
+						$scope.showError = function(model, error){
+							return model.$error[error];
+						}
+					});
+				
+					//让保存按钮无效
+					&lt;form name="form">
+						&lt;button ng-disabled="!canSave()">&lt;/button>
+					&lt;/form>
+
+					$scope.canSave = function(){
+						return $scope.form.$dirty && $scope.form.$valid;
+					}
+
+					//点击重置  取消做出的改变，回到初始状态
+					我们可以通过保存原始模型的一分拷贝来实现
+					<button ng-click="revert()" ng-disabled="!canRevert()">
+						重置表单
+					</button>	
+					
+					$scope.user = {
+						....
+					}
+					
+					var original = angular.copy($scope.user);
+					$scope.revert = function(){
+						$scope.user = angular.copy( original );
+						$scope.form.$setPristine();
+					}
+					$scope.canRevert = function(){
+						return !angular.equals($scope.user, original);//如果相等 返回true
+					}
 				</code>
 			</pre>
 	</div>

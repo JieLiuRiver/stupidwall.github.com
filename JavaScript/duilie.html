@@ -1,0 +1,72 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+					 /*===============================================*/
+					 /*  	关于队列
+					 /*===============================================*/
+					   1）、队列是一个列表。 存储按顺序排列的数据，先进的先出 First-In-First-Out
+                       2)、 入队即是插入，出队即是删除。
+                       3)、数组实现的队列
+                           function Queue(){
+                                this.dataStore = [];
+                                this.enqueue = enqueue;
+                                this.dequeue = dequeue;
+                                this.front = front;
+                                this.back = back;
+                                this.toString = toString;
+                                this.empty = empty;
+                            }
+                            function enqueue( element ){
+			  this.dataStore.push(element);
+                            }
+                            function dequeue( element ){
+			return this.dataStore.shift();
+                            }
+                            function front(){
+                            	  return this.dataStore[0];
+                            }
+                            function back(){
+                            	return this.dataStore[ this.dataStore.length -1 ]
+                            }
+                            function toString(){
+                            	var reStr = '';
+                            	for(var i=0; i&lt;this.dataStore.length; i++){
+				reStr += this.dataStore[i] + '\n';					
+                            	};
+                            	return reStr;
+                            }	
+                            function empty(){
+                            	if( this.dataStore.length == 0 ){
+				return true;
+                            	}else{
+                            		return false;
+                            	}
+                            }
+		
+		//应用：
+		 var testQ = new Queue();
+                            testQ.enqueue('hello');
+                            testQ.enqueue('world');
+                            testQ.enqueue('boy');
+                            console.log( testQ.toString() )
+                            testQ.dequeue();
+                            console.log( testQ.toString() );
+                            alert( testQ.front() );
+                            alert( testQ.back() );
+
+                            
+
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

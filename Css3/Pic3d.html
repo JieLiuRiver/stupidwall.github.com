@@ -1,0 +1,178 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:14px !important; text-shadow: none;">
+		
+					 /*===============================================*/
+					 /*  				3d盒子图片切换
+					 /*===============================================
+								1、css
+										body{ 
+											margin:0;}
+										ul{
+											margin:0; 
+											padding:0;
+											list-style:none;}
+										#btnWrap{
+											position:fixed;
+											left:0;
+											height:120px;
+											top:calc( 50% - 60px  );}
+										#btnWrap li{
+											width:100px;
+											height:24px;
+											margin:3px 0;
+											background:#f60;
+											text-align:right;
+											padding-right:10px;
+											color:#fff;
+											font:14px/24px  "微软雅黑";
+											position:relative;
+											transition:.4s;
+											cursor:pointer;
+											left:-70px;}
+										#btnWrap .active {
+											left:0;}
+											
+										.wrap{
+											width:800px;
+											height:400px;
+											border:10px solid #ccc; 
+											background:#333;
+											box-shadow:0 0 0 2px rgba(0,0,0,0.5), inset 0 0 5px rgba(0,0,0,1);
+											border-radius:5px;
+											margin:30px auto;
+											-webkit-perspective:1200px;
+											-webkit-transform:translateZ(400px);}
+										.wrap ul{
+											width:100%;
+											height:100%;
+											position:relative;
+											transition:1s;
+											-webkit-transform-origin:center center -400px;
+											-webkit-transform-style:preserve-3d;}
+										.wrap li{
+											width:100%;
+											height:100%;
+											position:absolute;
+											top:0;
+											font: bold 100px/400px Arial;
+											color:#fff;
+											text-align:center ; }
+										.wrap li:nth-of-type(1){
+											background:url(img/biZhi_1.png) no-repeat;
+											background-size:cover;} 
+										.wrap li:nth-of-type(2){
+											background:#CF0;
+											left:100%;
+											-webkit-transform-origin:left;
+											-webkit-transform:rotateY(90deg);
+											background:url(img/biZhi_2.png) no-repeat;
+											background-size:cover;} 
+										.wrap li:nth-of-type(3){
+											background:red;
+											left:0; top:0;
+											-webkit-transform:translateZ(-800px) ;
+											background:url(img/biZhi_3.png) no-repeat;
+											background-size:cover;}
+										 .wrap li:nth-of-type(4){
+											background:green;
+											left:-100%;
+											-webkit-transform-origin:right;
+											-webkit-transform:rotateY(-90deg);
+											background:url(img/biZhi_4.png) no-repeat;
+											background-size:cover;}
+									
+									2、html
+											&lt;div class="wrap">
+												&lt;ul id="list">
+													&lt;li>&lt;/li>
+													&lt;li>&lt;/li>
+													&lt;li>&lt;/li>
+													&lt;li>&lt;/li>
+												&lt;/ul>
+											&lt;/div>
+											
+											&lt;ul id="btnWrap">
+												&lt;li class="active">鸣人&lt;/li>
+												&lt;li>卡卡西&lt;/li>
+												&lt;li>佐助&lt;/li>
+												&lt;li>疾风&lt;/li>
+											&lt;/ul>
+											
+									3、js
+											window.onload = function(){
+													function id(id){
+														return document.getElementById(id);
+													}
+													var oList = id('list');
+													var aLi = oList.children;
+													var oBtnWrap = id('btnWrap');
+													var aLi_b = oBtnWrap.children;
+													
+													touchBtn();
+													function touchBtn(){
+															for( var i=0; i&lt;aLi_b.length; i++ ){
+																	aLi_b[i].index = i;
+																	aLi_b[i].onmouseover  = function(){
+																			for( var k=0; k&lt;aLi_b.length; k++ ){
+																					aLi_b[k].style.left = '-80px';
+																					aLi_b[k].style.background = '#f60';
+																			}
+																			this.style.left = 0;
+																			this.style.background = '#333';
+																	}
+															}
+													}
+													
+													clickBtn();
+													function clickBtn(){
+															for( var i=0; i&lt;aLi_b.length; i++ ){
+																	var e = aLi_b[i];
+																	e.onclick = function(){
+																			for( var i=0; i&lt;aLi.length; i++ ){
+																					aLi[i].index = i;
+																			}
+																			for(  var i=0; i&lt;aLi.length; i++ ){
+																					if( this.index ==  aLi[i].index){
+																							switch( i+1 ){
+																									case 4 : 
+																										oList.style.WebkitTransform = 'rotateY(90deg)';
+																									break;
+																									case 2 : 
+																										oList.style.WebkitTransform = 'rotateY(-90deg)';
+																									break;
+																									case 1 : 
+																										oList.style.WebkitTransform = 'rotateY(0deg)';
+																									break;
+																									case 3 : 
+																										oList.style.WebkitTransform = 'rotateY(180deg)';
+																									break;
+																							}
+																					}
+																			}
+																	}
+															}
+													}	
+													
+											}
+								
+								
+				</code>
+			</pre>
+	</div>
+		<!-- <div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	
+				</code>
+			</pre>
+		</div> -->
+
+		<button class="btn pull-right"  ui-sref="Css3" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+</div>
+	
+

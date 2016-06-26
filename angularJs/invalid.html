@@ -1,6 +1,6 @@
 <div class="container" >
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
 			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
 		
@@ -121,13 +121,47 @@ angular.module("myTest", [])
     &lt;/div&gt;
 &lt;/form&gt;
 
+  
+              //checkbox
+              &lt;input type="checkbox"  ng-model="user.role"  ng-true-value="admin" ng-fasle-value="basic">
+              
 
+              //radio
+              &lt;label>&lt;input type="radio" ng-model="user.sex" value="male">Male  &lt;label>
 
+              &lt;label> &lt; input type="radio" ng-model="user.sex" value="female">Female &lt;label>
+            
+              //select  静态
+              &lt;select ng-modle="sex">
+                  &lt;option value="m" ng-selected="sex=='m'">Male&lt;/option
+                  &lt;option value="f" ng-selected="sex=='f'">Female&lt;/option
+              &lt;/select>
+
+              //select 动态
+              使用数组数据源
+              ng-options = "user.email for user in users"
+              
+              //使用对象数据源
+              $scope.obj = {
+                'ss': 'sddf'
+              }
+              ng-options ="code as name for (code, name) in obj"
+  
+              $scope.list = [
+                  {"id" : "234", "name" : "dfef"},
+                  {"id" : "2345", "name" : "dfef2"}
+              ]
+              $scope.itemDefault = $scope.list[0];
+
+              &lt;select ng-model ="itemDefault" ng-options="item.name for item in list">
+              &lt;/select>
+              
+              
 
 				</code>
 			</pre>
 	</div>
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
 				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
 	代码说明：
@@ -237,6 +271,8 @@ angular.module("myTest", [])
 
 	屏蔽浏览器对表单的默认验证行为,
 	在表单元素上添加novalidate标记即可
+
+
 				</code>
 			</pre>
 		</div>

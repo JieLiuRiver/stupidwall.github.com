@@ -1,0 +1,196 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+					 /*===============================================*/
+					 /*  	一站式网站+hash+进场、出场动画
+					 /*===============================================*/
+					1)、架构是根据具体要做的业务来定的
+
+					2)、要做的：
+						1、用户体验要好
+						2、大量的特效（要合理）、保证性能
+						3、新的技术html5+css3
+						4、开发过程中和后期维护上，多人协作
+
+					3)、通过一站式的开发，hash，体验到类式flash的感觉
+					       资源加载上用seaJs来异步加载
+
+					4)、jquery作为底层库
+					        高版本的浏览器的兼容
+					        低版本还是老的版本
+
+					5)、封装一个css的运动库 + startMove ===> move.js
+
+					6)、jCanvaScript库
+
+
+
+					================================================================
+					1)、点击不同的菜单，显示不同的板块 
+
+					        &lt;a href="javascript:;" data-hash="index">首页&lt;/a>
+					        &lt;a href="javascript:;" data-hash="index2">首页2&lt;/a>
+					        &lt;div data-hash="index">首页&lt;/div>
+					        &lt;div data-hash="index2">首页&lt;/div>
+
+					      	 for( var i=0; i&lt;aA.length; i++ ){
+						        	aA[i].onclick = function(){
+						        		var hash = this.dataset.hash;
+						        		//点击时添加Hash
+						        		window.location.hash = hash;
+						        		for( var i=0; i&lt;aDiv.length; i++ ){
+						        			aDiv[i].style.display = 'none';
+						        			if( hash == aDiv[i].dataset.hash ){
+						        				aDiv[i].style.display = 'block';
+						        			}
+						        		}
+						        	}
+						}
+
+						//利用hash  锁定页面
+						var firstHash = window.location.hash.substring(1) || 'index'; //不存在的时候
+						for( var i=0; i&lt;aDiv.length; i++ ){
+							if( firstHash == aDiv[i].dataset.hash ){
+								aDiv[i].style.display = 'block';
+							}
+						}
+
+						//hash有一个特点，当网址上修改hash之后，敲击回车键，不会刷新。怎么解决？
+						//利用html5的hash事件
+						window.onhashchange =  function(){
+							window.location.reload();
+						}
+
+
+
+					================================================================
+
+					1)、改变hash时，出场动画，进场动画的处理
+						1）、引入 seaJs文件
+						2）、引入move.js文件
+						3）、引入main.js
+
+						####  main.js:
+						define( function( require, exports ){
+							//引入公共用的一些js，比方说一个底部的运动效果的js
+							require	('foot.js').init();
+
+							var oA, oDiv;
+
+							window.bBtn = true;
+
+							window.onhashchange =  function(){
+								if( window.bBtn ){
+									window.location.reload();
+								}
+							}
+
+							//进场动画
+							require('show.js').show(aA, aDiv);
+							require('hide.js').hide(aA, aDiv);
+						} )
+
+
+
+						###  show.js:
+						define( function(require,exports){
+							function show(aA, aDiv){
+								var firstHash = window.location.hash.substring(1) || 'index'; 
+								for( var i=0; i&lt;aDiv.length; i++ ){
+									if( firstHash == aDiv[i].dataset.hash ){	
+										aDiv[i].style.display = 'block';
+										switch( firstHash ){
+											case  'index' :
+											require('indexIn.js').init( aDiv[i] );
+											break;
+											case  'student' :
+											require('studentIn.js').init( aDiv[i] );
+											break;
+											case  'message' :
+											require('messageIn.js').init( aDiv[i] );
+											break;
+										}
+									}
+								}
+							}
+							exports.show = show;
+						} );
+
+						### indexIn.js:
+						define( function( require, exports ){
+							function init( obj ){
+								startMove( obj,{ width : 400 , height : 400}, function(){
+									window.bBtn = true;
+								} );
+							}
+							exports.init = init;
+						} )
+
+
+						###  hide.js:
+						define( function(require, exports){
+							function hide( aA, aDiv ){
+								for( var i=0; i<&lt;aA.length; i++ ){
+								        	aA[i].onclick = function(){
+
+								        		window.bBtn = false;
+
+								        		var hash = this.dataset.hash;
+								        		//点击后 等出场动画走完，才添hash
+
+								        		//先找到当前Hash， 让它出场
+								        		switch( window.location.hash.substring(1) || 'index' ){
+								        			case 'index' :
+								        			require('indexOut.js').init(aA, aDiv, hash);
+								        			break;
+								        			case 'student' :
+								        			require('studentxOut.js').init(aA, aDiv, hash);
+								        			break;
+								        			case 'message' :
+								        			require('messageOut.js').init(aA, aDiv, hash);
+								        			break;
+								        		}
+								        	}
+								}
+							}
+							exports.hide = hide;
+						} )
+
+
+						### indexOut.js:
+						define(function( require, exports ){
+							function init(aA, aDiv, hash){
+								for( var i=0; i&lt;aDiv.length; i++ ){
+									if( aDiv[i].dataset.hash == 'index' ){
+										startMove( aDiv[i], { width : 0,height:0 },function(){
+											window.location.hash = hash;
+											require('show.js').show( aA, aDiv );
+										});
+									}
+								}
+							}
+							exports.init = init;
+						})
+
+						有一个问题， 当点击菜单的时候，触发onhashchange 事件，会reload ,
+						我不想让它在这个时候触发这个，怎么处理？
+						当点击的时候，设置一个btn为false,当进场动画都走完之后再设为true即可,把这个开关挂到window下，那大家都可以获取到。
+
+	 
+	
+
+	
+				</code>
+			</pre>
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+
