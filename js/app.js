@@ -141,7 +141,8 @@
 	];
 	var data_BootStrap_pluging = [
 		{ view : 'form_layout', title :  'masget_表单布局模版' },
-		{ view : 'datepicker', title :  'datepicker日期插件使用' }
+		{ view : 'datepicker', title :  'datepicker日期插件使用' },
+		{ view : 'styleSet', title :  '各种样式类名查询' },
 	];
 	var  data_Css3 = [
 		{ view : 'loading', title : "Loading: keyframes、calc、animation、animationPlayState、new Image()" },
@@ -721,7 +722,11 @@
 			.state('mockjax',{
 				url : '/mockjax',
 				templateUrl : 'jQuery/mockjax.html'
-			}) 
+			})  
+			.state('styleSet',{
+				url : '/styleSet',
+				templateUrl : 'Bootstrap/styleSet.html'
+			})  
 			.state('barcode',{
 				url : '/barcode',
 				templateUrl : 'jQuery/barcode.html'
