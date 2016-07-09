@@ -18,8 +18,11 @@
 		{ view : 'noScroll', title : 'JS实现禁止滚动条' },
 		{ view : 'methodCal', title : '算法、数据结构' },
 		{ view : 'hashNet', title : '一站式+hash+进场、出场动画处理' },
-      		 { view : 'duilie', title : '队列' },
-      		 { view : 'showPic', title : '炫酷图片作品展示' }
+		{ view : 'duilie', title : '队列' },
+		{ view : 'showPic', title : '炫酷图片作品展示' },
+		{ view : 'tweenMax', title : 'TweenMax动画、整屏切换网页' },
+		{ view : 'beibao', title : '算法--背包问题' },
+		{ view : 'codeContent', title : 'JavaScript核心的属性、方法' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -139,6 +142,9 @@
 		{ view : 'excel', title : 'HTML表格内容导出到Excel' },
 		{ view : 'validate', title : 'validate.js强大的表单验证' }
 	];
+	var data_jQuery = [
+		{ view : 'plugins', title : '插件扩展' }
+	];
 	var data_BootStrap_pluging = [
 		{ view : 'form_layout', title :  'masget_表单布局模版' },
 		{ view : 'datepicker', title :  'datepicker日期插件使用' },
@@ -159,7 +165,8 @@
 		data_lodash :data_lodash,
 		data_jQuery_pluging : data_jQuery_pluging,
 		data_BootStrap_pluging :data_BootStrap_pluging,
-		data_Css3 : data_Css3
+		data_Css3 : data_Css3,
+		data_jQuery : data_jQuery
 	};
 	var app = angular.module('myApp',['ui.router']);
 		app.value('data',data); //服务
@@ -181,8 +188,8 @@
 	$scope.data_jQuery_pluging  = data.data_jQuery_pluging;
 	$scope.data_BootStrap_pluging  = data.data_BootStrap_pluging;
 	$scope.data_Css3 = data_Css3;
+	$scope.data_jQuery = data_jQuery;
 	$scope.keyword = '';
-
 	        $scope.timer = null;
 	        $scope.timer2 = null;
 	        var initMove = function(b){
@@ -251,26 +258,42 @@
 				url : '/mobileType',
 				templateUrl : 'JavaScript/mobileType.html'
 			})
+			.state('codeContent',{
+				url : '/codeContent',
+				templateUrl : 'JavaScript/codeContent.html'
+			})
 			.state('orientation',{
 				url : '/orientation',
 				templateUrl : 'JavaScript/orientation.html'
-			})
+			}) 
 			.state('removeUrlArea',{
 				url : '/removeUrlArea',
 				templateUrl : 'JavaScript/removeUrlArea.html'
 			})
+			.state('beibao',{
+				url : '/beibao',
+				templateUrl : 'JavaScript/beibao.html'
+			})
+			.state('tweenMax',{
+				url : '/tweenMax',
+				templateUrl : 'JavaScript/tweenMax.html'
+			}) 
 			.state('notouchmove',{
 				url : '/notouchmove',
 				templateUrl : 'JavaScript/notouchmove.html'
-			})
+			}) 
 			.state('showPic',{
 				url : '/showPic',
 				templateUrl : 'JavaScript/showPic.html'
 			})
+			.state('plugins',{
+				url : '/plugins',
+				templateUrl : 'jQuery/plugins.html'
+			})
 			.state('hashNet',{
 				url : '/hashNet',
 				templateUrl : 'JavaScript/hashNet.html'
-			}) 
+			})  
 			.state('baiduMap',{
 				url : '/baiduMap',
 				templateUrl : 'JavaScript/baiduMap.html'
