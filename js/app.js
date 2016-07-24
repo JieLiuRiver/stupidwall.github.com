@@ -22,7 +22,8 @@
 		{ view : 'showPic', title : '炫酷图片作品展示' },
 		{ view : 'tweenMax', title : 'TweenMax动画、整屏切换网页' },
 		{ view : 'beibao', title : '算法--背包问题' },
-		{ view : 'codeContent', title : 'JavaScript核心的属性、方法' }
+		{ view : 'codeContent', title : 'JavaScript核心的属性、方法' },
+		{ view : 'highPerformaceJS', title :'高性能JS' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -297,7 +298,11 @@
 			.state('baiduMap',{
 				url : '/baiduMap',
 				templateUrl : 'JavaScript/baiduMap.html'
-			})  
+			})
+            .state('highPerformaceJS',{
+                url : '/highPerformaceJS',
+                templateUrl : 'JavaScript/highPerformaceJS.html'
+            })
 			.state('noScroll',{
 				url : '/noScroll',
 				templateUrl : 'JavaScript/noScroll.html'

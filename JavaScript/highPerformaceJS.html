@@ -1,0 +1,188 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+						 /*===============================================*/
+						 /*  	性能
+						 /*===============================================*/
+
+							======================================================================================
+							======================================================================================
+							1)、
+							雅虎提供合并处理器，可以把多个&lt;script&gt;标签，用一个&lt;script&gt;标签来加载，从而减少脚本数量。
+
+
+
+							======================================================================================
+							======================================================================================
+							2)、动态脚本
+							不会阻塞页面其他程序的进程。
+							/*
+							params1: url-----Js文件
+							params2：callback-----完成加载后的回调函数
+							*/
+							function loadScript( url, callback ){
+							var script = document.createElement(&quot;script&quot;);
+							script.type = &quot;text/javascript&quot;;
+
+							if( script.readyState ){  //IE
+							script.onreadystatechange = function(){
+							if( script.readyState == &quot;loaded&quot; || script.readyState == &quot;complete&quot; ){
+							script.onreadystatechange = null;
+							callback();
+							}
+							}
+							}else{ //其他浏览器
+							script.onload = function(){
+							callback();
+							}
+							}
+							script.src = url;
+							document.getElementsByTagName(&quot;head&quot;)[0].appendChild( script );
+							}
+
+							//        loadScript( &quot;js/jquery.js&quot;, function(){
+							//            alert( &#x27;加载easyui文件完成....&#x27; );
+							//        } )
+
+							//如果希望按照顺序加载多个文件
+							loadScript( &quot;js/easyui.min.js&quot;, function(){
+							loadScript( &quot;js/date-utils.js&quot;, function(){
+							loadScript( &quot;js/jquery.combo.js&quot;, function(){
+							alert( &quot;按顺序加载三个文件&quot; );
+							} )
+							} )
+							} )
+
+
+
+							======================================================================================
+							======================================================================================
+							3)、使用LazyLoad库
+							&lt;script src=&quot;lazyload-min.js&quot;&gt;&lt;/script&gt;
+							&lt;script&gt;
+							LazyLoad.js( &quot;js/jquery.js&quot;,function(){
+							init();
+							} );
+							LazyLoad.js( [ &quot;file1.js&quot;, &quot;file2.js&quot; ], function(){
+							init();
+							} );
+							//https://raw.githubusercontent.com/rgrove/lazyload/master/lazyload.js
+							&lt;/script&gt;
+
+
+
+							======================================================================================
+							======================================================================================
+							4)、DOM操作与ECMAScript就像各自一个岛屿，它们之间有一个收费桥梁连接
+							访问DOM次数越多，费用越高。
+							方案： 尽可能减少过桥的次数，努力呆在ECMAScript岛上
+							1)、元素集合、元素集合的长度都缓存到一个变量里面
+							var aLi = document.getElementsByTagName(&#x27;li&#x27;);
+							var len = aLi.length;
+
+							2)、获取所有子节点：
+							var e = document.getElemnetById(&#x27;div&#x27;),
+							ch = e.childNodes,
+							len = ch.length;
+
+							3)、同好的获取方式
+							获取元素box下的所有a元素
+							var es = document.querySelectorALl(&quot;#box a&quot;);
+
+							要获取到class为test1的div元素，和class为test2的div元素
+							var es = document.querySelectorAll( &#x27;div.text1, div.test2&#x27; );
+
+
+							4)、关于重绘重排
+							1、浏览器下载完页面中的所有组件
+							html、 js、 css 、img
+							会生成2个内部的数据结构: DOM树、渲染树
+
+							2、然后开始绘制页面元素
+
+							3、一旦改变了边框的宽度，导致浏览器需要重新计算元素的集合属性，而且其他元素的结合属性和位置也会受到影响，这个时候，我们说渲染树中有影响到的部分就没用了，要重新构造渲染树。这个过程叫做“重排reflow”
+
+							4、重排完成之后，浏览器会重新绘制受到影响的部分到屏幕中，这个过程叫做&quot;重绘&quot;
+
+							5、如果只是改变一个元素的背景色，那这种情况下，只发生了一次重绘，布局没有改变，没有重排。
+
+							6、重排在什么时候发生：
+							添加、删除可见的DOM元素；
+							元素的位置发生改变；
+							元素的尺寸发生变化；
+							内容改变了；
+							浏览器窗口尺寸改变
+
+							7、建议一下方法：
+							var e = document.getElementById(&#x27;box&#x27;);
+							e.style.cssText = &#x27;border-left:1px;color:red;font-size:15px;&#x27;;
+
+							不想覆盖已存在的样式：
+							e.style.cssText += &#x27;; border-left:1px;color:red;font-size:15px;&#x27;
+
+
+							推荐通过改变class名称的方法
+							e.className = &#x27;active&#x27;;
+
+
+							8、我现在要做的是往ul里动态添加Li元素
+							function appendDataToElement( warp, data ){
+							var a,li;
+							for( var i=0; m = data.lenth; i&lt;m; i++ ){
+							a = document.createElement(&#x27;a&#x27;);
+							a.href = data[i].url;
+							a.appendChild( document.createTextNode(data[i].name) );
+							li = document.createElement(&#x27;li&#x27;);
+							li.appendChild( a );
+							wrap.appendChild( li );
+							}
+							}
+							var ul = document.getElementById(&#x27;list&#x27;);
+							appendDataToElement(ul,data);
+							现在这种情况下，data数组中的每一条数据添加到dom中，都会造成重排。
+							怎么办？
+
+							1、
+							临时从文档中移除ul元素，再回复它
+							var ul = document.getElement(&#x27;list&#x27;);
+							ul.style.display = &#x27;none&#x27;;
+							appendDataToElement( ul, data );
+							ul.style.display = &#x27;block&#x27;;
+
+							2、推荐的做法
+							var fragment = document.createDocumentFragment();//文档片段，一个轻量级的document对象，把它附加到原始列表中。
+							appendDataToElement( fragment,data );
+							ul.appendChild( fragment );
+
+
+
+							9、使用事件委托来处理大量点击事件
+
+
+
+
+			</code>
+			</pre>
+	</div>
+		<!--<div class="col-md-4">-->
+			<!--<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">-->
+				<!--<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">-->
+	<!---->
+
+	<!---->
+
+	<!---->
+				<!--</code>-->
+			<!--</pre>-->
+		<!--</div>-->
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+
