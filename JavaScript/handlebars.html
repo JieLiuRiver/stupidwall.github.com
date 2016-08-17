@@ -1,0 +1,325 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+				 /*===============================================*/
+				 /*  	Handlebars使用
+				 /*===============================================*/
+					依赖：
+						&lt;script src=&quot;public/js/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+						&lt;script src=&quot;public/js/bootstrap/dist/js/bootstrap.js&quot;&gt;&lt;/script&gt;
+						&lt;script src=&quot;public/js/handlebars/handlebars.js&quot;&gt;&lt;/script&gt;
+
+					html:
+
+							&lt;div class=&quot;container&quot;&gt;
+								&lt;div class=&quot;row&quot; style=&quot;padding-top:20px;&quot;&gt;
+									&lt;h3 class=&quot;label label-info&quot; style=&quot;padding:5px;&quot;&gt;Handlebars-eash循环：&lt;/h3&gt;
+									&lt;table id=&quot;myTable01&quot; class=&quot;table table-bordered&quot;&gt;
+										&lt;thead&gt;
+											&lt;tr class=&quot;btn-primary&quot;&gt;
+												&lt;th&gt;订单号&lt;/th&gt;
+												&lt;th&gt;金额&lt;/th&gt;
+												&lt;th&gt;商品&lt;/th&gt;
+												&lt;th&gt;客户&lt;/th&gt;
+											&lt;/tr&gt;
+										&lt;/thead&gt;
+										&lt;tbody id=&quot;myTable01_body&quot;&gt;
+											
+										&lt;/tbody&gt;
+									&lt;/table&gt;
+
+									&lt;h3 class=&quot;label label-info&quot; style=&quot;padding:5px;&quot;&gt;Handlebars-eash this使用：&lt;/h3&gt;
+									&lt;table id=&quot;myTable02&quot; class=&quot;table table-bordered&quot;&gt;
+										&lt;thead&gt;
+											&lt;tr class=&quot;btn-primary&quot;&gt;
+											 	&lt;th&gt;序号&lt;/th&gt;
+												&lt;th&gt;订单号&lt;/th&gt;
+												&lt;th&gt;金额&lt;/th&gt;
+												&lt;th&gt;商品&lt;/th&gt;
+												&lt;th&gt;客户&lt;/th&gt;
+											&lt;/tr&gt;
+										&lt;/thead&gt;
+										&lt;tbody id=&quot;myTable02_body&quot;&gt;
+											
+										&lt;/tbody&gt;
+									&lt;/table&gt;
+
+									&lt;h3 class=&quot;label label-info&quot; style=&quot;padding:5px;&quot;&gt;Handlebars-eash嵌套：&lt;/h3&gt;
+									&lt;table id=&quot;myTable03&quot; class=&quot;table table-bordered&quot;&gt;
+										&lt;thead&gt;
+											&lt;tr class=&quot;btn-primary&quot;&gt;
+												&lt;th&gt;订单号&lt;/th&gt;
+												&lt;th&gt;金额&lt;/th&gt;
+												&lt;th&gt;商品1&lt;/th&gt;
+												&lt;th&gt;商品2&lt;/th&gt;
+												&lt;th&gt;客户&lt;/th&gt;
+											&lt;/tr&gt;
+										&lt;/thead&gt;
+										&lt;tbody id=&quot;myTable03_body&quot;&gt;
+											
+										&lt;/tbody&gt;
+									&lt;/table&gt;
+
+									&lt;h3 class=&quot;label label-info&quot; style=&quot;padding:5px;&quot;&gt;Handlebars-with-进入到某个属性(进入到某个上下文环境)：&lt;/h3&gt;
+									&lt;table id=&quot;myTable04&quot; class=&quot;table table-bordered&quot;&gt;
+										&lt;thead&gt;
+											&lt;tr class=&quot;btn-primary&quot;&gt;
+												&lt;th&gt;订单号&lt;/th&gt;
+												&lt;th&gt;金额&lt;/th&gt;
+												&lt;th&gt;商品&lt;/th&gt;
+												&lt;th&gt;客户&lt;/th&gt;
+												&lt;th&gt;版本&lt;/th&gt;
+											&lt;/tr&gt;
+										&lt;/thead&gt;
+										&lt;tbody id=&quot;myTable04_body&quot;&gt;
+											
+										&lt;/tbody&gt;
+									&lt;/table&gt;
+
+									&lt;h3 class=&quot;label label-info&quot; style=&quot;padding:5px;&quot;&gt;Handlebars-if-判断的基本用法：&lt;/h3&gt;
+									&lt;table id=&quot;myTable05&quot; class=&quot;table table-bordered&quot;&gt;
+										&lt;thead&gt;
+											&lt;tr class=&quot;btn-primary&quot;&gt;
+												&lt;th&gt;订单号&lt;/th&gt;
+												&lt;th&gt;金额&lt;/th&gt;
+												&lt;th&gt;商品&lt;/th&gt;
+												&lt;th&gt;客户&lt;/th&gt;
+											&lt;/tr&gt;
+										&lt;/thead&gt;
+										&lt;tbody id=&quot;myTable05_body&quot;&gt;
+											
+										&lt;/tbody&gt;
+									&lt;/table&gt;
+
+									&lt;h3 class=&quot;label label-info&quot; style=&quot;padding:5px;&quot;&gt;Handlebars-由于if功力不足引出的Helper：&lt;/h3&gt;
+									&lt;table id=&quot;myTable06&quot; class=&quot;table table-bordered&quot;&gt;
+										&lt;thead&gt;
+											&lt;tr class=&quot;btn-primary&quot;&gt;
+												&lt;th&gt;姓名&lt;/th&gt;
+									           	&lt;th&gt;性别&lt;/th&gt;
+										        &lt;th&gt;年龄&lt;/th&gt;
+											&lt;/tr&gt;
+										&lt;/thead&gt;
+										&lt;tbody id=&quot;myTable06_body&quot;&gt;
+											
+										&lt;/tbody&gt;
+									&lt;/table&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;
+					
+					js:
+							&lt;script id=&quot;ul_template01&quot; type=&quot;text/x-handlebars-template&quot;&gt;
+									{{#each testData}}
+										&lt;tr&gt;
+											&lt;td&gt;{{ordernum}}&lt;/td&gt;
+											&lt;td&gt;{{money}}&lt;/td&gt;
+											&lt;td&gt;{{product}}&lt;/td&gt;
+											&lt;td&gt;{{customer}}&lt;/td&gt;
+										&lt;/tr&gt;
+									{{/each}}
+								&lt;/script&gt;
+
+								&lt;script id=&quot;ul_template02&quot; type=&quot;text/x-handlebars-template&quot;&gt;
+									{{#each this}}
+										&lt;tr&gt;
+											&lt;td&gt;{{addOne @index}}&lt;/td&gt;
+											&lt;td&gt;{{ordernum}}&lt;/td&gt;
+											&lt;td&gt;{{money}}&lt;/td&gt;
+											&lt;td&gt;{{product}}&lt;/td&gt;
+											&lt;td&gt;{{customer}}&lt;/td&gt;
+										&lt;/tr&gt;
+									{{/each}}
+								&lt;/script&gt;
+
+								&lt;script id=&quot;ul_template03&quot; type=&quot;text/x-handlebars-template&quot;&gt;
+									{{#each this}}
+										&lt;tr&gt;
+											&lt;td&gt;{{ordernum}}&lt;/td&gt;
+											&lt;td&gt;{{money}}&lt;/td&gt;
+											{{#each product}}
+												&lt;td&gt;{{../str}}：{{this}}&lt;/td&gt;
+											{{/each}}
+											&lt;td&gt;{{customer}}&lt;/td&gt;
+										&lt;/tr&gt;
+									{{/each}}
+								&lt;/script&gt;
+
+								&lt;script id=&quot;ul_template04&quot; type=&quot;text/x-handlebars-template&quot;&gt;
+									{{#each this}}
+										&lt;tr&gt;
+											&lt;td&gt;{{ordernum}}&lt;/td&gt;
+											&lt;td&gt;{{money}}&lt;/td&gt;
+											&lt;td&gt;{{product}}&lt;/td&gt;
+											&lt;td&gt;{{customer}}&lt;/td&gt;
+											&lt;td&gt;
+												{{#with str}}
+													{{#each this}}
+														&lt;button type=&quot;button&quot; class=&quot;btn btn-success&quot;&gt;{{banben}}&lt;/button&gt;
+													{{/each}}
+												{{/with}}
+											&lt;/td&gt;
+										&lt;/tr&gt;
+									{{/each}}
+								&lt;/script&gt;
+								
+								&lt;script id=&quot;ul_template05&quot; type=&quot;text/x-handlebars-template&quot;&gt;
+									{{#each this}}
+										{{#if ordernum}}
+											&lt;tr&gt;
+												&lt;td&gt;{{ordernum}}&lt;/td&gt;
+												&lt;td&gt;{{money}}&lt;/td&gt;
+												&lt;td&gt;{{product}}&lt;/td&gt;
+												&lt;td&gt;{{customer}}&lt;/td&gt;
+											&lt;/tr&gt;
+										{{/if}}
+									{{/each}}
+								&lt;/script&gt;
+								
+								&lt;script id=&quot;ul_template06&quot; type=&quot;text/x-handlebars-template&quot;&gt;
+									{{#each this}}
+										{{#if name}}
+											{{#compare age 18}}
+											&lt;tr&gt;
+												&lt;td&gt;{{name}}&lt;/td&gt;
+												&lt;td&gt;{{sex}}&lt;/td&gt;
+												&lt;td&gt;{{age}}&lt;/td&gt;
+											&lt;/tr&gt;
+											{{else}}
+											&lt;tr&gt;
+												&lt;td&gt;/&lt;/td&gt;
+												&lt;td&gt;/&lt;/td&gt;
+												&lt;td&gt;/&lt;/td&gt;
+											&lt;/tr&gt;
+											{{/compare}}
+										{{/if}}
+									{{/each}}
+								&lt;/script&gt;
+
+								&lt;script&gt;
+										$(document).ready(function(){
+												var data = {
+													testData : [
+														{ ordernum : 2341234, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;李先生&quot; },
+														{ ordernum : 2341235, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;何先生&quot; },
+														{ ordernum : 2341237, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;陈女士&quot; },
+														{ ordernum : 2341238, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;张大卫&quot; },
+														{ ordernum : 2341239, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;温先生&quot; },
+														{ ordernum : 2341230, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;陈先生&quot; },
+														{ ordernum : 2341211, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;刘先生&quot; },
+														{ ordernum : 2341212, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;x先生&quot; },
+														{ ordernum : 2341213, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;x女士&quot; }
+													]
+												}
+												var data02 = [
+															{ ordernum : 2341234, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;李先生&quot; },
+															{ ordernum : 2341235, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;何先生&quot; },
+															{ ordernum : 2341237, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;陈女士&quot; },
+															{ ordernum : 2341238, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;张大卫&quot; },
+															{ ordernum : 2341239, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;温先生&quot; },
+															{ ordernum : 2341230, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;陈先生&quot; },
+															{ ordernum : 2341211, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;刘先生&quot; },
+															{ ordernum : 2341212, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;x先生&quot; },
+															{ ordernum : 2341213, money : &quot;3899RMB&quot;, product : &quot;iphone SE&quot;, customer : &quot;x女士&quot; }
+												]
+												var data03 = [
+															{ ordernum : 2341234, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;李先生&quot; ,str : &#x27;选择&#x27;},
+															{ ordernum : 2341235, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;何先生&quot;,str : &#x27;选择&#x27; },
+															{ ordernum : 2341237, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;陈女士&quot; ,str : &#x27;选择&#x27;},
+															{ ordernum : 2341238, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;张大卫&quot;,str : &#x27;选择&#x27; },
+															{ ordernum : 2341239, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;温先生&quot;,str : &#x27;选择&#x27; },
+															{ ordernum : 2341230, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;陈先生&quot; ,str : &#x27;选择&#x27;},
+															{ ordernum : 2341211, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;刘先生&quot; ,str : &#x27;选择&#x27;},
+															{ ordernum : 2341212, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;x先生&quot;,str : &#x27;选择&#x27; },
+															{ ordernum : 2341213, money : &quot;3899RMB&quot;, product : [&quot;iphone SE 16G&quot;,&quot;iphone SE 64G&quot;], customer : &quot;x女士&quot;,str : &#x27;选择&#x27;}
+												]
+												var data04 = [
+															{ ordernum : 2341234, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;李先生&quot; ,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]},
+															{ ordernum : 2341235, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;何先生&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}] },
+															{ ordernum : 2341237, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;陈女士&quot; ,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]},
+															{ ordernum : 2341238, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;张大卫&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}] },
+															{ ordernum : 2341239, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;温先生&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}] },
+															{ ordernum : 2341230, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;陈先生&quot; ,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]},
+															{ ordernum : 2341211, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;刘先生&quot; ,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]},
+															{ ordernum : 2341212, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;x先生&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}] },
+															{ ordernum : 2341213, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;x女士&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]}
+												]
+												var data05 = [
+															{ ordernum : 2341234, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;李先生&quot; ,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]},
+															{  money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;何先生&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}] },
+															{ ordernum : 2341237, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;陈女士&quot; ,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]},
+															{ ordernum : 2341238, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;张大卫&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}] },
+															{ ordernum : 2341239, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;温先生&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}] },
+															{  money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;陈先生&quot; ,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]},
+															{ ordernum : 2341211, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;刘先生&quot; ,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]},
+															{  money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;x先生&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}] },
+															{ ordernum : 2341213, money : &quot;3899RMB&quot;, product : &quot;iphone SE 16G&quot;, customer : &quot;x女士&quot;,str : [{&quot;banben&quot;:16},{&quot;banben&quot;:64}]}
+												]
+												var data06 = {
+								                    &quot;student&quot;: [
+								                        {
+								                            &quot;name&quot;: &quot;张三&quot;,
+								                            &quot;sex&quot;: &quot;0&quot;,
+								                            &quot;age&quot;: 23
+								                         },
+								                         {
+								                             &quot;sex&quot;: &quot;0&quot;,
+								                            &quot;age&quot;: 22
+								                         },
+								                         {
+								                             &quot;name&quot;: &quot;妞妞&quot;,
+								                            &quot;sex&quot;: &quot;1&quot;,
+								                             &quot;age&quot;: 18
+								                         }
+								                     ]
+							                 	};	
+
+											//01
+											var myTemplate = Handlebars.compile( $(&quot;#ul_template01&quot;).html() );
+											$(&quot;#myTable01_body&quot;).html( myTemplate(data) );
+
+
+											//02
+											var myTemplate02 = Handlebars.compile( $(&quot;#ul_template02&quot;).html() );
+											Handlebars.registerHelper(&quot;addOne&quot;,function(index,options){
+												return parseInt(index)+1;
+											});
+											$(&quot;#myTable02_body&quot;).html( myTemplate02(data02) );
+
+											//03
+											var myTemplate03 = Handlebars.compile( $(&quot;#ul_template03&quot;).html() );
+											$(&quot;#myTable03_body&quot;).html( myTemplate03(data03) );
+
+											//04
+											var myTemplate04 = Handlebars.compile( $(&quot;#ul_template04&quot;).html() );
+											$(&quot;#myTable04_body&quot;).html( myTemplate04(data04) );
+
+											//05
+											var myTemplate05 = Handlebars.compile( $(&quot;#ul_template05&quot;).html() );
+											$(&quot;#myTable05_body&quot;).html( myTemplate05(data05) );
+
+											//06
+											var myTemplate06 = Handlebars.compile( $(&quot;#ul_template06&quot;).html() );
+											Handlebars.registerHelper(&quot;compare&quot;,function(v1,v2,options){
+													if(v1&gt;v2){
+														 return options.fn(this);
+													}else{
+														return options.inverse(this);
+													}
+											})
+											$(&quot;#myTable06_body&quot;).html( myTemplate06(data06) );
+
+										})
+
+				</code>
+			</pre>
+	</div>
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+
