@@ -24,7 +24,8 @@
 		{ view : 'beibao', title : '算法--背包问题' },
 		{ view : 'codeContent', title : 'JavaScript核心的属性、方法' },
 		{ view : 'handlebars', title : 'Handlebars使用' },
-		{ view : '_underscore', title : '_underscore工具' }
+		{ view : '_underscore', title : '_underscore工具' },
+		{ view : 'd3', title : '强大的图形库--d3.js' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -267,6 +268,10 @@
 			.state('codeContent',{
 				url : '/codeContent',
 				templateUrl : 'JavaScript/codeContent.html'
+			})
+			.state('d3',{
+				url : '/d3',
+				templateUrl : 'JavaScript/d3.html'
 			})
 			.state('orientation',{
 				url : '/orientation',
