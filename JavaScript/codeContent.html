@@ -3,209 +3,209 @@
 		<div class="col-md-12">
 			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
 			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
-		
-                                                             /*===============================================*/
-                                                             /*  	JavaScript核心方法、属性
-                                                             /*===============================================*/
-																1)、属性callee    指的是当前正在执行的函数
-																可以通过arguments.callee来引用匿名函数自身
-                                                                var fn1 = function(x){
-                                                                	if( x&lt;2 ){
-                                                                    	return 1;
-                                                                    }else{
-                                                                    	return x * arguments.callee(x-1);
-                                                                    }
-                                                                }	
-                                                                
-                                                                2)、Array
-                                                                	1)、concat()
-                                                                    		合成新的数组
-                                                                    		[1,2,3].concat(4,[5],[6,7]);  
-                                                                   
-                                                                    2)、every()
-                                                                    		测试数组所有元素是否满足某些条件
-                                                                    		[1,2,3].every(function(x){
-                                                                            	return x &lt;2;
-                                                                            });  //false  
-                                                                   
-                                                                   3)、  filter()
-                                                                   			[1,2,3].filter(function(x){
-                                                                            		return x > 1;
-                                                                            }) //  =>  [2,3]
-                                                                   
-                                                                   4)、forEach()
-                                                                   			[1,2,3].forEach(function(x,i,a){
-                                                                            		a[i]++;
-                                                                            }) //  =>  [2,3,4]
-                                                                            
-                                                                   5)、indexOf()
-                                                                   			['a','b'].indexOf('b') //  =>  1
-                                                                            
-                                                                   6)、join 转化为字符串
-                                                                  			[1,2,3,'testing'].join("+");  //  "1+2+3+testing"
-                                                                   
-                                                                   7)、 map()
-                                                                   		   [1,2,3].map(function(x){
-                                                                           		return x*x;
-                                                                           });   // =>  [1,4,9]
-                                                                   
-                                                                   8)、pop()  删除并返回最后一个元素	
-                                                                   		  shift()移除第一个
-                                                                   		  push()  追加到最后
-                                                                          unshift()添加到第一个
-                                                                          
-                                                                   9)、reduce();  从数组元素中计算出一个值
-                                                                   			var arr = [1,2,3,4,5];
-                                                                            var num = arr.reduce(function(x,y){
-                                                                                    return x*y;
-                                                                            });
-                                                                            alert( num );  // 120
-                                                                            
-                                                                   10)、reduceRight() 从右到左
-                                                                    		[2,10,60].reduceRight(function(x,y){
-                                                                            		return x/y;
-                                                                            })   //==> 3   (60/10)/2
-                                                                            
-                                                                    11)、reverse() 颠倒数组中的元素
-                                                                    		[2,10,60].reverse()  //[60,10,2]
-                                                                    
-                                                                    12)、slice() 返回片段
-                                                                    		[60,10,2,1].slice(0,3)  //[60,10,2] 
-                                                                            
-                                                                    13)、some() 测试是否有元素满足有些条件
-                                                                    		[60,10,2,1].some(function(x){ return x >10 })  //true
-                                                                            
 
-                                                                    14)、sort() 排序函数
-                                                                    		[60,10,2,1].sort(function(a,b){ return a - b  }) //  1,2,10,60
+                 /*===============================================*/
+                 /*  	JavaScript核心方法、属性
+                 /*===============================================*/
+                    1)、属性callee    指的是当前正在执行的函数
+                    可以通过arguments.callee来引用匿名函数自身
+                    var fn1 = function(x){
+                        if( x&lt;2 ){
+                            return 1;
+                        }else{
+                            return x * arguments.callee(x-1);
+                        }
+                    }
 
-                                                                    15)、splice() 插入、删除、替换元素
-                                                                    			var arr = ['A','B','C','D']
-                                                                    		 	arr.splice(0  ,1)
-                                                                                alert( arr );   //====> B C D
-                                                                                arr.splice(0,2)   // ===>干掉2个
-                                                                                //删除的返回值，是删除的对象
-                                                                                
-                                                                                arr.splice(0,1,'a')  //用a替换掉第一个A
-																				alert( arr )
-                                                                                
-                                                                                arr.splice(1,0,'e')
-																				alert( arr );   // =====> A e B C D
-                                                                                
-                                                                    16)、toString()    将数组转化为字符串
+                    2)、Array
+                        1)、concat()
+                                合成新的数组
+                                [1,2,3].concat(4,[5],[6,7]);
 
-                                                               3)、Boolean
-                                                               		  将布尔值转换成字符串
-                                                                      b.toString(); 
-                                                                      
-                                                               4)、JSON.parse() 解析JSON格式的字符串
-                                                               		  JSON.stringify() 序列化对象
-                                                                      
-                                                               5)、Math
-                                                               		  	1)、Math.abs(); 计算绝对值
-                                                                        2)、Math.acos(); 计算反余弦值
-                                                                        3)、Math.asin();计算反正弦值
-                                                                        4)、Math.asin();计算反正切值
-                                                                        5)、Math.atan2(); 计算从x轴到指定点的角度
-                                                                        6)、Math.ceil();对数字向上取整
-                                                                        7)、Math.cos();计算余弦值
-                                                                        8)、Math.floor();对一个数字向下取整
-                                                                        9)、Math.max();返回两个数中较大的那个
-                                                                        10)、Math.min();返回两个数中较小的那个
-                                                                        11)、Math.random(); 计算一个随机数
-                                                                        12)、Math.round();四舍五入
-                                                                        13)、Math.sin();计算正弦值
-                                                                        14)、Math.sqrt();计算平方根
-                                                                        15)、Math.tan();计算正切值 
-                                                                        
-                                                               6)、Number
-                                                               			1)、toFixed()
-                                                                        	var n = 23343.6854
-                                                                        	n.toFixed();  //23344   四舍五入
-                                                                            n.toFixed(1);  //23343.7   四舍五入
-                                                                            
-                                                               7)、Object
-                                                               			1)、 Object.hasOwnProperty()
-                                                                        		var o = new Object();
-                                                                                o.x = 5;
-                                                                                o.hasOwnProperty('x');  //true    x是本地属性
-                                                                                o.hasOwnProperty('y');  //false   o没有属性y
-                                                                                o.hasOwnProperty('toString');  //false   toString 属性是继承属性
-                                                                                
-                                                                         2)、constructor
-                                                                         		function Aaa(){
-                                                                                }
-                                                                                var a1 =new Aaa();
-                                                                                alert( a1.constructor ); //Aaa函数
-                                                                                
-                                                                                var arr = [];
-																				alert( arr.constructor ) //Array函数
+                        2)、every()
+                                测试数组所有元素是否满足某些条件
+                                [1,2,3].every(function(x){
+                                    return x &lt;2;
+                                });  //false
 
-                                                                         3)、instanceof ： 不是属性和方法， 而是运算符
-																				对象与构造函数在原型链上是否有关系
-                                                                                function Aaa(){
-                                                                                }
-                                                                                var a1 = new Aaa();
-                                                                                alert( a1 instanceof Aaa ); 查看实例对象a1与对象Aaa，在圆形链上是否有关系。如果是，返回true
+                       3)、  filter()
+                                [1,2,3].filter(function(x){
+                                        return x > 1;
+                                }) //  =>  [2,3]
+
+                       4)、forEach()
+                                [1,2,3].forEach(function(x,i,a){
+                                        a[i]++;
+                                }) //  =>  [2,3,4]
+
+                       5)、indexOf()
+                                ['a','b'].indexOf('b') //  =>  1
+
+                       6)、join 转化为字符串
+                                [1,2,3,'testing'].join("+");  //  "1+2+3+testing"
+
+                       7)、 map()
+                               [1,2,3].map(function(x){
+                                    return x*x;
+                               });   // =>  [1,4,9]
+
+                       8)、pop()  删除并返回最后一个元素
+                              shift()移除第一个
+                              push()  追加到最后
+                              unshift()添加到第一个
+
+                       9)、reduce();  从数组元素中计算出一个值
+                                var arr = [1,2,3,4,5];
+                                var num = arr.reduce(function(x,y){
+                                        return x*y;
+                                });
+                                alert( num );  // 120
+
+                       10)、reduceRight() 从右到左
+                                [2,10,60].reduceRight(function(x,y){
+                                        return x/y;
+                                })   //==> 3   (60/10)/2
+
+                        11)、reverse() 颠倒数组中的元素
+                                [2,10,60].reverse()  //[60,10,2]
+
+                        12)、slice() 返回片段
+                                [60,10,2,1].slice(0,3)  //[60,10,2]
+
+                        13)、some() 测试是否有元素满足有些条件
+                                [60,10,2,1].some(function(x){ return x >10 })  //true
 
 
-                                                                         4)、toString  完美的类型判断
-                                                                            var x =[] // {} // null // num // string //。。。。
-                                                                            alert( Object.prototype.toString.call(x ) );  // [object Array] // [object object] // [object number] // [object string]
-                                                                            可以这样判断：
-                                                                            if( Object.prototype.toString.call([]) == '[object Array]' ){
-                                                                            }
-                                                                            
-                                                                        5)、parseFloat();将一个字符串转为数字
-                                                                        	   parseInt(); 讲一个字符串转换为整数
-                                                                               
-                                                                               
-                                                               8)、String
-                                                               			1)、 取得一个字符串中第'n'个字符
-                                                                        		string.charAt(n);  
-                                                                                
-                                                               			2)、 连接字符串
-                                                                        		string.concat(value,...);
-                                                                                
-                                                               			3)、 搜索一个字符串
-                                                                        		string.indexOf('x');
-                                                                                string.lastIndexOf('x');  //从后面开始搜索一个字符串       
-                                                                               
-                                                                        4)、找到一个或者多个正则表达式匹配结果
-                                                                        	   var result = string.match( reg );
-                                                                               
-                                                                        5)、替换匹配给正则表达式的子串
-                                                                        	   text.replace(reg, replacement);
-                                                                               
-                                                                        6)、根据一个正则表达式查找
-                                                                        	   'JavaScript'.search(/script/i);  //返回  4 
-                                                                               
-                                                                        7)、提取一个子串
-                                                                        	   'abcdefg'.slice(0,4)  // 'abcd'
-                                                                               'abcdefg'.slice(2,4)  // 'cd'
-                                                                               'abcdefg'.slice(4)  // 'efg'
-                                                                               
-                                                                        8)、切分字符串
-                                                                        	   ''1:2:3:4:5'.split(":") //  ['1','2','3','4','5']
+                        14)、sort() 排序函数
+                                [60,10,2,1].sort(function(a,b){ return a - b  }) //  1,2,10,60
 
-                                                                        9)、提取一个子串
-                                                                        		var s = 'abcdefg';
-                                                                                s.substr(2,2);   //cd
-                                                                                s.substr(3);    // defg
-                                                                                
-                                                                        10)、substring()
-                                                                        	var str = '妙味课堂是一只独具特色的IT培训团队'；
-                                                                            str.substring(4); // =======>  一只独具特色的IT培训团队
-                                                                            str.substring(0,2) // ====> 妙味
-                                                                            //这个substring就是截取部分
-                                                                            str.substring(2,0)// 这样的话====》妙味
-                                                                            //这玩意，可以检测里面的2个数字，自动调整数字的位置。
-                                                                            str.substring(); //截取全部，跟写个0 一样的
-                                                                            str.substring(-3,2); // -3当成0处理
-                                                                            
-                                                                            
-                                                                         11)、String.toLowerCase()
-                                                                         		  String.toUpperCase();
+                        15)、splice() 插入、删除、替换元素
+                                    var arr = ['A','B','C','D']
+                                    arr.splice(0  ,1)
+                                    alert( arr );   //====> B C D
+                                    arr.splice(0,2)   // ===>干掉2个
+                                    //删除的返回值，是删除的对象
+
+                                    arr.splice(0,1,'a')  //用a替换掉第一个A
+                                    alert( arr )
+
+                                    arr.splice(1,0,'e')
+                                    alert( arr );   // =====> A e B C D
+
+                        16)、toString()    将数组转化为字符串
+
+                   3)、Boolean
+                          将布尔值转换成字符串
+                          b.toString();
+
+                   4)、JSON.parse() 解析JSON格式的字符串
+                          JSON.stringify() 序列化对象
+
+                   5)、Math
+                            1)、Math.abs(); 计算绝对值
+                            2)、Math.acos(); 计算反余弦值
+                            3)、Math.asin();计算反正弦值
+                            4)、Math.asin();计算反正切值
+                            5)、Math.atan2(); 计算从x轴到指定点的角度
+                            6)、Math.ceil();对数字向上取整
+                            7)、Math.cos();计算余弦值
+                            8)、Math.floor();对一个数字向下取整
+                            9)、Math.max();返回两个数中较大的那个
+                            10)、Math.min();返回两个数中较小的那个
+                            11)、Math.random(); 计算一个随机数
+                            12)、Math.round();四舍五入
+                            13)、Math.sin();计算正弦值
+                            14)、Math.sqrt();计算平方根
+                            15)、Math.tan();计算正切值
+
+                   6)、Number
+                            1)、toFixed()
+                                var n = 23343.6854
+                                n.toFixed();  //23344   四舍五入
+                                n.toFixed(1);  //23343.7   四舍五入
+
+                   7)、Object
+                            1)、 Object.hasOwnProperty()
+                                    var o = new Object();
+                                    o.x = 5;
+                                    o.hasOwnProperty('x');  //true    x是本地属性
+                                    o.hasOwnProperty('y');  //false   o没有属性y
+                                    o.hasOwnProperty('toString');  //false   toString 属性是继承属性
+
+                             2)、constructor
+                                    function Aaa(){
+                                    }
+                                    var a1 =new Aaa();
+                                    alert( a1.constructor ); //Aaa函数
+
+                                    var arr = [];
+                                    alert( arr.constructor ) //Array函数
+
+                             3)、instanceof ： 不是属性和方法， 而是运算符
+                                    对象与构造函数在原型链上是否有关系
+                                    function Aaa(){
+                                    }
+                                    var a1 = new Aaa();
+                                    alert( a1 instanceof Aaa ); 查看实例对象a1与对象Aaa，在圆形链上是否有关系。如果是，返回true
+
+
+                             4)、toString  完美的类型判断
+                                var x =[] // {} // null // num // string //。。。。
+                                alert( Object.prototype.toString.call(x ) );  // [object Array] // [object object] // [object number] // [object string]
+                                可以这样判断：
+                                if( Object.prototype.toString.call([]) == '[object Array]' ){
+                                }
+
+                            5)、parseFloat();将一个字符串转为数字
+                                   parseInt(); 讲一个字符串转换为整数
+
+
+                   8)、String
+                            1)、 取得一个字符串中第'n'个字符
+                                    string.charAt(n);
+
+                            2)、 连接字符串
+                                    string.concat(value,...);
+
+                            3)、 搜索一个字符串
+                                    string.indexOf('x');
+                                    string.lastIndexOf('x');  //从后面开始搜索一个字符串
+
+                            4)、找到一个或者多个正则表达式匹配结果
+                                   var result = string.match( reg );
+
+                            5)、替换匹配给正则表达式的子串
+                                   text.replace(reg, replacement);
+
+                            6)、根据一个正则表达式查找
+                                   'JavaScript'.search(/script/i);  //返回  4
+
+                            7)、提取一个子串
+                                   'abcdefg'.slice(0,4)  // 'abcd'
+                                   'abcdefg'.slice(2,4)  // 'cd'
+                                   'abcdefg'.slice(4)  // 'efg'
+
+                            8)、切分字符串
+                                   ''1:2:3:4:5'.split(":") //  ['1','2','3','4','5']
+
+                            9)、提取一个子串
+                                    var s = 'abcdefg';
+                                    s.substr(2,2);   //cd
+                                    s.substr(3);    // defg
+
+                            10)、substring()
+                                var str = '妙味课堂是一只独具特色的IT培训团队'；
+                                str.substring(4); // =======>  一只独具特色的IT培训团队
+                                str.substring(0,2) // ====> 妙味
+                                //这个substring就是截取部分
+                                str.substring(2,0)// 这样的话====》妙味
+                                //这玩意，可以检测里面的2个数字，自动调整数字的位置。
+                                str.substring(); //截取全部，跟写个0 一样的
+                                str.substring(-3,2); // -3当成0处理
+
+
+                             11)、String.toLowerCase()
+                                      String.toUpperCase();
                                                                                                                                                              
 				</code>
 			</pre>
