@@ -23,7 +23,8 @@
 		{ view : 'tweenMax', title : 'TweenMax动画、整屏切换网页' },
 		{ view : 'beibao', title : '算法--背包问题' },
 		{ view : 'codeContent', title : 'JavaScript核心的属性、方法' },
-		{ view : 'handlebars', title : 'Handlebars使用' }
+		{ view : 'handlebars', title : 'Handlebars使用' },
+		{ view : '_underscore', title : '_underscore工具' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -254,6 +255,10 @@
 			.state('filterSpecialWord',{
 				url : '/filterSpecialWord',
 				templateUrl : 'JavaScript/filterSpecialWord.html'
+			})
+			.state('_underscore',{
+				url : '/_underscore',
+				templateUrl : 'JavaScript/_underscore.html'
 			})
 			.state('mobileType',{
 				url : '/mobileType',
