@@ -23,7 +23,12 @@
 		{ view : 'tweenMax', title : 'TweenMax动画、整屏切换网页' },
 		{ view : 'beibao', title : '算法--背包问题' },
 		{ view : 'codeContent', title : 'JavaScript核心的属性、方法' },
-		{ view : 'highPerformaceJS', title :'高性能JS' }
+		{ view : 'highPerformaceJS', title :'高性能JS' },
+		{ view : 'handlebars', title : 'Handlebars使用' },
+		{ view : '_underscore', title : '_underscore工具' },
+		{ view : 'd3', title : '强大的图形库--d3.js' },
+		{ view : 'NodeJs_Express', title : 'NodeJs-Express应用' },
+		{ view : 'appContent', title : '随记笔记' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -255,6 +260,10 @@
 				url : '/filterSpecialWord',
 				templateUrl : 'JavaScript/filterSpecialWord.html'
 			})
+			.state('_underscore',{
+				url : '/_underscore',
+				templateUrl : 'JavaScript/_underscore.html'
+			})
 			.state('mobileType',{
 				url : '/mobileType',
 				templateUrl : 'JavaScript/mobileType.html'
@@ -263,14 +272,22 @@
 				url : '/codeContent',
 				templateUrl : 'JavaScript/codeContent.html'
 			})
+			.state('d3',{
+				url : '/d3',
+				templateUrl : 'JavaScript/d3.html'
+			})
 			.state('orientation',{
 				url : '/orientation',
 				templateUrl : 'JavaScript/orientation.html'
 			}) 
+			.state('NodeJs_Express',{
+				url : '/NodeJs_Express',
+				templateUrl : 'JavaScript/NodeJs_Express.html'
+			}) 
 			.state('removeUrlArea',{
 				url : '/removeUrlArea',
 				templateUrl : 'JavaScript/removeUrlArea.html'
-			})
+			}) 
 			.state('beibao',{
 				url : '/beibao',
 				templateUrl : 'JavaScript/beibao.html'
@@ -338,6 +355,10 @@
 			.state('setXDate',{
 				url : '/setXDate',
 				templateUrl : 'JavaScript/setXDate.html'
+			})
+			.state('appContent',{
+				url : '/appContent',
+				templateUrl : 'JavaScript/appContent.html'
 			})
 			.state('getDateSize',{
 				url : '/getDateSize',
@@ -626,6 +647,10 @@
 			.state('classIn',{
 				url : 'classIn',
 				templateUrl : 'JavaScript/classIn.html'
+			})
+			.state('handlebars',{
+				url : 'handlebars',
+				templateUrl : 'JavaScript/handlebars.html'
 			})
 			.state('prototypeA',{
 				url : 'prototypeA',
