@@ -26,7 +26,8 @@
 		{ view : 'handlebars', title : 'Handlebars使用' },
 		{ view : '_underscore', title : '_underscore工具' },
 		{ view : 'd3', title : '强大的图形库--d3.js' },
-		{ view : 'NodeJs_Express', title : 'NodeJs-Express应用' }
+		{ view : 'NodeJs_Express', title : 'NodeJs-Express应用' },
+		{ view : 'appContent', title : '随记笔记' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -349,6 +350,10 @@
 			.state('setXDate',{
 				url : '/setXDate',
 				templateUrl : 'JavaScript/setXDate.html'
+			})
+			.state('appContent',{
+				url : '/appContent',
+				templateUrl : 'JavaScript/appContent.html'
 			})
 			.state('getDateSize',{
 				url : '/getDateSize',
