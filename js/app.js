@@ -23,6 +23,7 @@
 		{ view : 'tweenMax', title : 'TweenMax动画、整屏切换网页' },
 		{ view : 'beibao', title : '算法--背包问题' },
 		{ view : 'codeContent', title : 'JavaScript核心的属性、方法' },
+		{ view : 'highPerformaceJS', title :'高性能JS' },
 		{ view : 'handlebars', title : 'Handlebars使用' },
 		{ view : '_underscore', title : '_underscore工具' },
 		{ view : 'd3', title : '强大的图形库--d3.js' },
@@ -314,7 +315,11 @@
 			.state('baiduMap',{
 				url : '/baiduMap',
 				templateUrl : 'JavaScript/baiduMap.html'
-			})  
+			})
+            .state('highPerformaceJS',{
+                url : '/highPerformaceJS',
+                templateUrl : 'JavaScript/highPerformaceJS.html'
+            })
 			.state('noScroll',{
 				url : '/noScroll',
 				templateUrl : 'JavaScript/noScroll.html'
