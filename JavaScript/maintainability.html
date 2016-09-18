@@ -1,0 +1,275 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+		
+	 /*===============================================*/
+	 /*  	编写高质量可维护代码
+	 /*===============================================*/
+			1. 当一个项目很庞大的时候，编程风格统一是可以节省很多时间的。
+			
+			2.缩进：
+				推荐使用4个空格字符作为一个缩进层级。
+
+			3.换行：
+				推荐在下一行增加2个层级的缩进（一个层级是4个字符）
+
+			4.空行:
+				添加空行更加容易看懂
+
+			5.命名：
+				变量、函数使用小驼峰命名法
+				变量用名册，函数用动词：
+					var count = 10;
+					var myName = 'jack';
+					function getName(){
+
+					}	
+				构造函数：
+					使用大驼峰命名法
+					function Person(){
+
+					}
+
+			6.注释： 注释前加一个空格
+
+				//好的写法：
+				if( isOk ){
+					
+					//这里是注释
+					getName();
+				}
+
+
+				//不好的写法
+				if( isOk ){
+					//这里是注释
+					getName();
+				}
+
+				
+				难以理解的一段代码之前的注释：
+
+					/**
+					 * 当xxxx,
+					   如果xxxx,则xxxxx，
+					   如果xxxx，则xxxx
+					 */
+					if( x ){
+						xxxxx
+					}
+				
+			7.语句、表达式：
+				if语句： 这样最好
+					if( x ){
+						dowork();
+					}
+
+
+				switch语句：
+					switch( x ){
+						case A:
+							//代码
+							break;
+
+						case B:
+							//代码
+							break;
+
+						//没有default
+					}
+
+
+				for循环：
+					var values = [1,2,3,4,5],
+						len = values.length,
+						i;
+
+					for( i=0; i< len; i++ ){
+						if( i=2 ){
+							alert(i);
+						}	
+					}
+
+
+			8.严格模式
+				不要再全局下使用严格模式，因为那因为这所有都使用这种模式。
+
+				(function(){
+					'use strict';
+					function doSomeThing(){
+						//代码
+					}
+				})()
+			
+				
+			9.实现松耦合：
+
+				1）、不要再css中写js表达式。
+						一旦有bug, 谁会想到js报错会再css里面。
+						性能也不好。
+
+				2）、不要再js里面这样改变样式：
+						obj.style.color = 'red';
+						obj.style.cssText = 'color:red;'
+	
+						当需要调整样式的时候，不容易找到。
+						性能不好。
+
+						应该统一使用className的方式。
+
+				3）、不要再html中写js，像这样：
+					&lt;button onclick="doSomething()" >点击我&lt;/button>
+
+					2个ui层，html/js之间的深度耦合
+
+					也不要再html下面嵌入一个&lt;script>标签
+						&lt;script>
+							doSomething()
+						&lt:/script>
+					
+					应该统一放在外置的js文件中
+
+				4）、不要再js中写html拼接
+					 主要是因为，看上去很乱，不容易懂，很恶心。
+					 推荐使用: handlebars
+
+			10. 避免使用全局变量：
+
+				为什么？
+				1）、当全局变量和全局函数变得越来越多的时候，
+					 发生命名冲突的概率就会越来越高
+
+				2）、全局变量，深深耦合再上下文环境中，一旦有一
+					 函数改变来某一全局变量，则报错。
+					 因为代码变得很脆弱
+
+				怎么避免？
+					使用一个立即执行的函数调用并将所有脚本放置到其中
+					不会产生任何全局变量
+					这种模式的使用场景是有限的，如果说代码需要被其他代码依赖，或者需要运行时扩展，就不能这样。
+					(function( win ){
+							
+							"use strict"
+
+							var doc = win.document;
+							//在这里定义其他变量
+
+					})( window )
+			
+			11.事件处理：
+				var addEvents = (function(){
+						if(document.addEventListener){
+
+							return function(type,element,fun){
+								element.addEventListener(type,fun,false);
+							}
+
+						}else if(document.addachEvent){
+
+							return function(type,element,fun){
+								element.addachEvent('on'+type,fun);
+							}
+
+						}else{
+
+							return function(type,element,fun){
+								element['on'+type] = fun;
+							}
+
+						}
+					})();
+					
+				var MyApplication = {
+					
+					handleClick : function( event ){
+							
+							event.preventDefault();
+							event.stopPropagation();
+
+							this.show( event.clientX, event.clientY );
+
+					},
+
+					show ： function(x, y){
+						$(obj).css({
+							left : x,
+							top : y
+						});
+					}
+
+				}	
+				addEvents('click', element, function( event ){
+					MyApplication.handleClick( event );
+				})
+
+
+
+			12.监测属性存不存在：
+				
+				//不好的写法:
+				if( object['name'] ){
+					//代码
+				}
+
+				//不好的写法：
+				if( object['name'] != null ){
+					//代码
+				}
+
+				//不好的写法
+				if( object['name'] != undefined ){
+
+				}
+
+				//好的写法：
+				if( 'name' in object ){
+					//代码
+				}
+
+				//好的写法   实例属性的时候用：
+				if( object.hasOwnProperty('name') ){
+					//代码
+				}
+					
+
+			
+			13.将配置数据，从代码中分离出来：
+				var config = {
+					VALUE1 : 'ABC',
+					DATA01 : "/xx/xxx.php",
+					CSSNAME : "selected"
+				}
+
+				function work(){
+					if( ok ){
+						location.href = config.DATA01;
+					}
+					if( $(obj).hasClass(config.CSSNAME) ){
+							$(obj).removeClass(config.CSSNAME)
+					}
+				}
+				我们也完全可以把配置数据放在一个单独的json文件中，逻辑与数据实现隔离
+				
+				
+
+
+				</code>
+			</pre>
+	</div>
+		<div class="col-md-6">
+			<!-- <pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+
+				</code>
+			</pre> -->
+		</div>
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+

@@ -28,7 +28,8 @@
 		{ view : '_underscore', title : '_underscore工具' },
 		{ view : 'd3', title : '强大的图形库--d3.js' },
 		{ view : 'NodeJs_Express', title : 'NodeJs-Express应用' },
-		{ view : 'appContent', title : '随记笔记' }
+		{ view : 'appContent', title : '随记笔记' },
+		{ view : 'maintainability', title : '高质量可维护JavaScript' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -248,10 +249,14 @@
 				url : '/JSON.parse',
 				templateUrl : 'JavaScript/JSON.parse.html'
 			})
+			.state('maintainability',{
+				url : '/maintainability',
+				templateUrl : 'JavaScript/maintainability.html'
+			})
 			.state('Mp3',{
 				url : '/Mp3',
 				templateUrl : 'JavaScript/Mp3.html'
-			})
+			})  
 			.state('star',{
 				url : '/star',
 				templateUrl : 'JavaScript/star.html'
