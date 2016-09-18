@@ -20475,7 +20475,54 @@
 				39、获取到表单数据
 				    jquery-form-json.js
 				    var obj = $(&quot;#myForm&quot;).serializeJson();  //要设置name
+					 
+					  &lt;form id=&quot;my-profile&quot;&gt;
+						  &lt;!-- simple attribute --&gt;
+						  &lt;input type=&quot;text&quot; name=&quot;fullName&quot;              value=&quot;Mario Izquierdo&quot; /&gt;
 
+						  &lt;!-- nested attributes --&gt;
+						  &lt;input type=&quot;text&quot; name=&quot;address[city]&quot;         value=&quot;San Francisco&quot; /&gt;
+						  &lt;input type=&quot;text&quot; name=&quot;address[state][name]&quot;  value=&quot;California&quot; /&gt;
+						  &lt;input type=&quot;text&quot; name=&quot;address[state][abbr]&quot;  value=&quot;CA&quot; /&gt;
+
+						  &lt;!-- array --&gt;
+						  &lt;input type=&quot;text&quot; name=&quot;jobbies[]&quot;             value=&quot;code&quot; /&gt;
+						  &lt;input type=&quot;text&quot; name=&quot;jobbies[]&quot;             value=&quot;climbing&quot; /&gt;
+
+						  &lt;!-- and more ... --&gt;
+						  &lt;textarea              name=&quot;projects[0][name]&quot;&gt;serializeJSON&lt;/textarea&gt;
+						  &lt;textarea              name=&quot;projects[0][language]&quot;&gt;javascript&lt;/textarea&gt;
+						  &lt;input type=&quot;hidden&quot;   name=&quot;projects[0][popular]&quot; value=&quot;0&quot; /&gt;
+						  &lt;input type=&quot;checkbox&quot; name=&quot;projects[0][popular]&quot; value=&quot;1&quot; checked=&quot;checked&quot;/&gt;
+
+						  &lt;textarea              name=&quot;projects[1][name]&quot;&gt;tinytest.js&lt;/textarea&gt;
+						  &lt;textarea              name=&quot;projects[1][language]&quot;&gt;javascript&lt;/textarea&gt;
+						  &lt;input type=&quot;hidden&quot;   name=&quot;projects[1][popular]&quot; value=&quot;0&quot; /&gt;
+						  &lt;input type=&quot;checkbox&quot; name=&quot;projects[1][popular]&quot; value=&quot;1&quot;/&gt;
+						&lt;/form&gt;
+
+						JavaScript:
+
+						$('#my-profile').serializeJSON();
+						// returns =>
+						{
+						  fullName: "Mario Izquierdo",
+
+						  address: {
+						    city: "San Francisco",
+						    state: {
+						      name: "California",
+						      abbr: "CA"
+						    }
+						  },
+
+						  jobbies: ["code", "climbing"],
+
+						  projects: {
+						    '0': { name: "serializeJSON", language: "javascript", popular: "1" },
+						    '1': { name: "tinytest.js",   language: "javascript", popular: "0" }
+						  }
+						}
 
 				=========================================================================================================
 				=========================================================================================================
