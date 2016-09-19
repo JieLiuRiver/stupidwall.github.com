@@ -29,7 +29,18 @@
 		{ view : 'd3', title : '强大的图形库--d3.js' },
 		{ view : 'NodeJs_Express', title : 'NodeJs-Express应用' },
 		{ view : 'appContent', title : '随记笔记' },
-		{ view : 'maintainability', title : '高质量可维护JavaScript' }
+		{ view : 'maintainability', title : '高质量可维护JavaScript' },
+		{ view : 'jqueryEasyUI', title : 'jqueryEasyUI' },
+
+		{ view : 'mockjax', title : 'mockJax/mockJson不让后端拖后腿' },
+		{ view : 'barcode', title : '生成条形码' },
+		{ view : 'zTree', title : '强大的zTree树结构' },
+		{ view : 'upload', title : '文件上传插件' },
+		{ view : 'pca', title : '省市区地址三级联动插件' },
+		{ view : 'dragPanel', title : '可拖拽可缩放的面板' },
+		{ view : 'niceSelect', title : '美化下拉框插件' },
+		{ view : 'excel', title : 'HTML表格内容导出到Excel' },
+		{ view : 'validate', title : 'validate.js强大的表单验证' }
 	];
 	var data_tool = [
 		{ view : 'filterSpecialWord', title : '过滤特殊字符' },
@@ -227,7 +238,7 @@
 	        $scope.classTitles = [
 	        	{ id : 1 ,  value : 'JavaScript' , view : 'index' },
 	        	{ id : 2 ,  value : 'AngularJS' , view : 'AngularJs' },
-	        	{ id : 3 ,  value : 'jQuery' , view : 'jQuery' },
+	        /*{ id : 3 ,  value : 'jQuery' , view : 'jQuery' },*/
 	        	{ id : 4 ,  value : 'Mobile' , view : 'Mobile' },
 	        	{ id : 5 ,  value : 'Bootstrap' , view : 'Bootstrap' },
 	        	{ id : 6 ,  value : 'Css3' , view : 'Css3' }
@@ -249,10 +260,14 @@
 				url : '/JSON.parse',
 				templateUrl : 'JavaScript/JSON.parse.html'
 			})
+			.state('jqueryEasyUI',{
+				url : '/jqueryEasyUI',
+				templateUrl : 'JavaScript/jqueryEasyUI.html'
+			})
 			.state('maintainability',{
 				url : '/maintainability',
 				templateUrl : 'JavaScript/maintainability.html'
-			})
+			}) 
 			.state('Mp3',{
 				url : '/Mp3',
 				templateUrl : 'JavaScript/Mp3.html'
@@ -561,38 +576,38 @@
 			   url : '/$route-service',
 			   templateUrl : 'angularJs/$route-service.html'
 		   	})
-		            .state('register',{
-		                url : '/register',
-		                templateUrl : 'angularJs/register.html'
-		            })
-		            .state('service',{
-		                       url : '/service',
-		                       templateUrl : 'angularJs/service.html'
-		                   })
-		            .state('$q',{
-		                       url : '/$q',
-		                       templateUrl : 'angularJs/$q.html'
-		                   })
-		            .state('config',{
-		                       url : '/config',
-		                       templateUrl : 'angularJs/config.html'
-		                   })
-		            .state('ngcache',{
-		                       url : '/ngcache',
-		                       templateUrl : 'angularJs/ngcache.html'
-		                   })
-		            .state('$interpolate',{
-		                       url : '/$interpolate',
-		                       templateUrl : 'angularJs/$interpolate.html'
-		                   })
-		            .state('$location',{
-		                       url : '/$location',
-		                       templateUrl : 'angularJs/$location.html'
-		                   })
-		            .state('$http',{
-		                       url : '/$http',
-		                       templateUrl : 'angularJs/$http.html'
-		                   })
+            .state('register',{
+                url : '/register',
+                templateUrl : 'angularJs/register.html'
+            })
+            .state('service',{
+                       url : '/service',
+                       templateUrl : 'angularJs/service.html'
+                   })
+            .state('$q',{
+                       url : '/$q',
+                       templateUrl : 'angularJs/$q.html'
+                   })
+            .state('config',{
+                       url : '/config',
+                       templateUrl : 'angularJs/config.html'
+                   })
+            .state('ngcache',{
+                       url : '/ngcache',
+                       templateUrl : 'angularJs/ngcache.html'
+                   })
+            .state('$interpolate',{
+                       url : '/$interpolate',
+                       templateUrl : 'angularJs/$interpolate.html'
+                   })
+            .state('$location',{
+                       url : '/$location',
+                       templateUrl : 'angularJs/$location.html'
+                   })
+            .state('$http',{
+                       url : '/$http',
+                       templateUrl : 'angularJs/$http.html'
+                   })
 			.state('$anchoring',{
 			   url : '/$anchoring',
 			   templateUrl : 'angularJs/$anchoring.html'
@@ -779,7 +794,7 @@
 			})
 			.state('mockjax',{
 				url : '/mockjax',
-				templateUrl : 'jQuery/mockjax.html'
+				templateUrl : 'JavaScript/mockjax.html'
 			})  
 			.state('styleSet',{
 				url : '/styleSet',
@@ -787,35 +802,35 @@
 			})  
 			.state('barcode',{
 				url : '/barcode',
-				templateUrl : 'jQuery/barcode.html'
+				templateUrl : 'JavaScript/barcode.html'
 			})
 			.state('zTree',{
 				url : '/zTree',
-				templateUrl : 'jQuery/zTree.html'
+				templateUrl : 'JavaScript/zTree.html'
 			})
 			.state('upload',{
 				url : '/upload',
-				templateUrl : 'jQuery/upload.html'
+				templateUrl : 'JavaScript/upload.html'
 			})
 			.state('pca',{
 				url : '/pca',
-				templateUrl : 'jQuery/pca.html'
+				templateUrl : 'JavaScript/pca.html'
 			})
 			.state('dragPanel',{
 				url : '/dragPanel',
-				templateUrl : 'jQuery/dragPanel.html'
+				templateUrl : 'JavaScript/dragPanel.html'
 			})
 			.state('niceSelect',{
 				url : '/niceSelect',
-				templateUrl : 'jQuery/niceSelect.html'
+				templateUrl : 'JavaScript/niceSelect.html'
 			})
 			.state('excel',{
 				url : '/excel',
-				templateUrl : 'jQuery/excel.html'
+				templateUrl : 'JavaScript/excel.html'
 			})
 			.state('validate',{
 				url : '/validate',
-				templateUrl : 'jQuery/validate.html'
+				templateUrl : 'JavaScript/validate.html'
 			})
 			.state('form_layout',{
 				url : '/form_layout',

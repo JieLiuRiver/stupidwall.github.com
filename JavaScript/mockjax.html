@@ -1,0 +1,101 @@
+<div class="container" >
+	<div class="row">
+		<div class="col-md-12">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); " >
+			<code class="language-css" style="color:#fff; font-size:14px !important; text-shadow: none;">
+		
+					 /*===============================================*/
+					 /*  				  请求接口成功返回模拟的大量数据
+					 /*===============================================
+							1、要引入的文件：
+								1）、jquery.js
+								2）、jquery.mockjax.min.js
+								3）、jquery.mockjson.js
+					
+						   	2、使用：
+
+						   		//自定义数据
+						   		$.mockJSON.data.KEY =[
+									'第1课',
+									'第2课',
+									'第3课',
+									'第4课',
+									'第5课',
+									'第6课',
+									'第7课',
+									'第8课',
+									'第9课',
+									'第10课'
+								]
+								
+								
+								//在发起请求之前写入：
+								var isAjaxMocked = true;
+								if( isAjaxMocked ){
+									$.mockjax({
+										url : 'testData.php',
+										status : 200,
+										responseTime : 750,
+										response : function(){
+											var data = $.mockJSON.generateFromTemplate({
+												"list|20-30" : [
+													{  
+														"id|+1" : 1,
+														"title" : "@KEY ",
+														"level" : '1',
+														"price|100-500" : 100 ,
+														"address" : '广州',
+														"married|0-1" : true,
+														"name" : "@MALE_FIRST_NAME @LAST_NAME",
+														"child|0-5" : [
+															{
+																"age|0-32" : 0 ,
+																"name" : "@FEMALE_FIRST_NAME"
+															}
+														]  
+													}
+												]
+											});
+											this.responseText = data;
+										}
+									});
+								}
+
+								//发起请求：
+								$.ajax({
+									url : 'testData.php',
+									type : 'GET',
+									error : function(xhr){
+										alert('无法获取数据');
+									},
+									success : function( response ){
+										
+										console.log( response );
+									}
+								})
+
+							3、 注意：
+								1）、url地址是不存在的。
+								2）、当我们的请求接口打通之后，把isAjaxMocked设置为false即可
+								3）、可以模拟出大量的数据，注意模拟方法的使用
+								4）、模拟json规则的网址：http://experiments.mennovanslooten.nl/2010/mockjson/
+
+							
+				</code>
+			</pre>
+	</div>
+		<!-- <div class="col-md-4">
+			<pre style="margin-bottom: 10px; background: hsl(30, 20%, 25%); ">
+				<code class="language-css" style="color:#fff; font-size:15px; text-shadow: none;">
+	
+				</code>
+			</pre>
+		</div> -->
+
+		<button class="btn pull-right"  ui-sref="index" style="background: hsl(30, 20%, 25%); color:#fff;margin-bottom:10px; margin-right: 15px;">返回</button>
+	</div>
+	
+	
+</div>
+	
+
