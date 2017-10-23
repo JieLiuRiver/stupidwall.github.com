@@ -10,21 +10,21 @@
 <body>
     
     <div id="app">
-        <h1 style="text-align:center">
-                {{zeroName}}
-        </h1>
-        <Button>按钮</Button>
+        <i-card>
+                <p slot="title">
+                        <Icon type="ios-film-outline"></Icon>
+                        相关信息
+                    </p>
+                    <ul>
+                            <li v-for="item in worklist">
+                                <a :href="item.url" target="_blank">{{ item.name }}</a>
+                            </li>
+                        </ul>
+        </i-card>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
     <script src="//unpkg.com/iview/dist/iview.min.js"></script>
-    <script>
-         var vm = new Vue({
-             el: '#app',
-             data: {
-                    zeroName: 'STUPIDWALL'
-             }
-         })
-    </script>
+    <script src="https://stupidwall.github.io/js/app.js"></script>
 </body>
 </html>
