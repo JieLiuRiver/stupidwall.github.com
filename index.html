@@ -10,9 +10,8 @@
 <body>
     
     <div id="app">
-        <i-card>
-                <p slot="title">
-                        <Icon type="ios-film-outline"></Icon>
+        <Card>
+                    <p slot="title">
                         相关信息
                     </p>
                     <ul>
@@ -20,7 +19,7 @@
                                 <a :href="item.url" target="_blank">{{ item.name }}</a>
                             </li>
                         </ul>
-        </i-card>
+        </Card>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>

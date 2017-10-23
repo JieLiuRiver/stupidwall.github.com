@@ -3,8 +3,8 @@ var vm = new Vue({
     data: {
         worklist: [
             {
-                url: 'https//baidu.com',
-                name: '菜鸟网络'
+                url: 'http://sm.liujack.com/',
+                name: '个人技术网站'
             }
         ]
     }
