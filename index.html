@@ -10,16 +10,11 @@
 <body>
     
     <div id="app">
-        <Card>
-                    <p slot="title">
-                        相关信息
-                    </p>
-                    <ul>
-                            <li v-for="item in worklist">
-                                <a :href="item.url" target="_blank">{{ item.name }}</a>
-                            </li>
-                        </ul>
-        </Card>
+        <ul>
+            <li v-for="item in worklist">
+                <a :href="item.url" target="_blank">{{ item.name }}</a>
+            </li>
+        </ul>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
