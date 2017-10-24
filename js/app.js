@@ -4,7 +4,7 @@ var vm = new Vue({
         worklist: [
             {
                 url: 'http://sm.liujack.com/',
-                name: '个人技术网站'
+                name: '个人技术博客'
             }
         ]
     }
