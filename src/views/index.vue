@@ -31,20 +31,7 @@
 </style>
 <template>
     <div class="index">
-        <Menu mode="horizontal" :theme="theme" active-name="1">
-            <MenuItem name="1">
-                <Icon type="ios-paper"></Icon>
-                内容管理
-            </MenuItem>
-            <MenuItem name="2">
-                <Icon type="ios-people"></Icon>
-                用户管理
-            </MenuItem>
-            <MenuItem name="3">
-                <Icon type="settings"></Icon>
-                综合设置
-            </MenuItem>
-        </Menu>
+      HELLO
     </div>
 </template>
 <script>
